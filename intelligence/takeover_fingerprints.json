@@ -1,0 +1,420 @@
+{
+  "version": 1,
+  "description": "Passive subdomain-takeover fingerprints. A dangling CNAME plus a provider error page is an INDICATOR requiring authorized manual verification, never proof of takeover.",
+  "providers": [
+    {
+      "id": "github-pages",
+      "name": "GitHub Pages",
+      "cname_patterns": ["\\.github\\.io$"],
+      "http_indicators": [
+        "There isn't a GitHub Pages site here",
+        "For root URLs (like http://example.com/) you must provide an index.html file",
+        "404 There is no GitHub Pages site here"
+      ],
+      "confidence": "high",
+      "dns_behavior": "CNAME to <user>.github.io; unclaimed repository returns a GitHub 404 page",
+      "false_positive_warnings": [
+        "Private repositories also return 404; verify the target is claimable by the tester"
+      ],
+      "reference": "https://docs.github.com/en/pages"
+    },
+    {
+      "id": "heroku",
+      "name": "Heroku",
+      "cname_patterns": ["\\.herokuapp\\.com$", "\\.herokudns\\.com$"],
+      "http_indicators": ["No such app", "There's nothing here, yet.", "heroku | no such app"],
+      "confidence": "high",
+      "dns_behavior": "CNAME to a Heroku app hostname; deleted apps leave the alias dangling",
+      "false_positive_warnings": ["Custom maintenance pages can mimic the no-such-app page"],
+      "reference": "https://devcenter.heroku.com/articles/custom-domains"
+    },
+    {
+      "id": "aws-s3",
+      "name": "Amazon S3",
+      "cname_patterns": [
+        "\\.s3\\.amazonaws\\.com$",
+        "\\.s3[.-][a-z0-9-]+\\.amazonaws\\.com$",
+        "s3-website[.-]"
+      ],
+      "http_indicators": [
+        "NoSuchBucket",
+        "The specified bucket does not exist",
+        "<Code>NoSuchBucket</Code>"
+      ],
+      "confidence": "high",
+      "dns_behavior": "CNAME/alias to an S3 website or bucket endpoint; deleted buckets return NoSuchBucket",
+      "false_positive_warnings": [
+        "Bucket may exist but be privately owned; do not attempt to claim it"
+      ],
+      "reference": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html"
+    },
+    {
+      "id": "azure",
+      "name": "Microsoft Azure",
+      "cname_patterns": [
+        "\\.azurewebsites\\.net$",
+        "\\.cloudapp\\.azure\\.com$",
+        "\\.azurestaticapps\\.net$",
+        "\\.blob\\.core\\.windows\\.net$",
+        "\\.trafficmanager\\.net$"
+      ],
+      "http_indicators": [
+        "404 Web Site not found",
+        "This web app is stopped",
+        "The requested URI does not represent any resource on the server"
+      ],
+      "confidence": "medium",
+      "dns_behavior": "CNAME to an Azure regional hostname; deleted services leave the record dangling",
+      "false_positive_warnings": ["Azure returns similar errors for stopped, not deleted, services"],
+      "reference": "https://learn.microsoft.com/azure/app-service/"
+    },
+    {
+      "id": "netlify",
+      "name": "Netlify",
+      "cname_patterns": ["\\.netlify\\.app$", "\\.netlify\\.com$"],
+      "http_indicators": [
+        "Not Found - Request ID",
+        "Looks like you've followed a broken link",
+        "Page not found"
+      ],
+      "confidence": "medium",
+      "dns_behavior": "CNAME to a Netlify site; deleted sites leave custom domains unclaimed",
+      "false_positive_warnings": ["Generic 404 text may originate from the application itself"],
+      "reference": "https://docs.netlify.com/domains-https/custom-domains/"
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel",
+      "cname_patterns": ["\\.vercel\\.app$", "\\.now\\.sh$"],
+      "http_indicators": [
+        "The deployment could not be found on Vercel",
+        "DEPLOYMENT_NOT_FOUND",
+        "DEPLOYMENT_DISABLED"
+      ],
+      "confidence": "high",
+      "dns_behavior": "CNAME to Vercel; removed deployments return DEPLOYMENT_NOT_FOUND",
+      "false_positive_warnings": ["Preview deployments can also be intentionally inaccessible"],
+      "reference": "https://vercel.com/docs/projects/domains"
+    },
+    {
+      "id": "shopify",
+      "name": "Shopify",
+      "cname_patterns": ["\\.myshopify\\.com$"],
+      "http_indicators": [
+        "Sorry, this shop is currently unavailable",
+        "Only one step left",
+        "This shop is unavailable"
+      ],
+      "confidence": "high",
+      "dns_behavior": "CNAME to shops.myshopify.com; closed shops leave the alias dangling",
+      "false_positive_warnings": ["Password-protected shops still render a store page"],
+      "reference": "https://help.shopify.com/en/manual/domains"
+    },
+    {
+      "id": "fastly",
+      "name": "Fastly",
+      "cname_patterns": ["\\.fastly\\.net$", "\\.fastlylb\\.net$", "\\.global\\.ssl\\.fastly\\.net$"],
+      "http_indicators": [
+        "Fastly error: unknown domain",
+        "Fastly error: unknown domain:"
+      ],
+      "confidence": "high",
+      "dns_behavior": "CNAME to Fastly service; detached services return unknown-domain errors",
+      "false_positive_warnings": ["Misconfigured active services can return the same error"],
+      "reference": "https://www.fastly.com/documentation/"
+    },
+    {
+      "id": "cloudfront",
+      "name": "Amazon CloudFront",
+      "cname_patterns": ["\\.cloudfront\\.net$"],
+      "http_indicators": [
+        "ERROR: The request could not be satisfied",
+        "The request could not be satisfied."
+      ],
+      "confidence": "low",
+      "dns_behavior": "CNAME to a CloudFront distribution; deleted distributions return generic errors",
+      "false_positive_warnings": [
+        "CloudFront emits this generic error for many non-takeover conditions; manual review required"
+      ],
+      "reference": "https://docs.aws.amazon.com/cloudfront/"
+    },
+    {
+      "id": "pantheon",
+      "name": "Pantheon",
+      "cname_patterns": ["\\.pantheonsite\\.io$"],
+      "http_indicators": [
+        "The gods are wise, but do not know of the site which you seek",
+        "404 Unknown Site"
+      ],
+      "confidence": "high",
+      "dns_behavior": "CNAME to a Pantheon site environment; deleted sites leave dangling aliases",
+      "false_positive_warnings": ["Wrong environment names also produce 404 Unknown Site"],
+      "reference": "https://docs.pantheon.io/"
+    },
+    {
+      "id": "surge",
+      "name": "Surge.sh",
+      "cname_patterns": ["\\.surge\\.sh$"],
+      "http_indicators": ["project not found", "Surge - Project not found"],
+      "confidence": "high",
+      "dns_behavior": "CNAME to surge.sh; deleted projects return project-not-found",
+      "false_positive_warnings": [],
+      "reference": "https://surge.sh/help/"
+    },
+    {
+      "id": "bitbucket",
+      "name": "Bitbucket Pages",
+      "cname_patterns": ["\\.bitbucket\\.io$"],
+      "http_indicators": ["Repository not found"],
+      "confidence": "medium",
+      "dns_behavior": "CNAME to bitbucket.io; deleted repository pages return not-found",
+      "false_positive_warnings": ["Private repositories also return not-found"],
+      "reference": "https://support.atlassian.com/bitbucket-cloud/"
+    },
+    {
+      "id": "tumblr",
+      "name": "Tumblr",
+      "cname_patterns": ["\\.tumblr\\.com$"],
+      "http_indicators": [
+        "There's nothing here.",
+        "Whatever you were looking for doesn't currently exist at this address"
+      ],
+      "confidence": "high",
+      "dns_behavior": "CNAME to domains.tumblr.com; deleted blogs leave dangling domains",
+      "false_positive_warnings": ["Deleted posts can produce a similar page"],
+      "reference": "https://help.tumblr.com/"
+    },
+    {
+      "id": "zendesk",
+      "name": "Zendesk",
+      "cname_patterns": ["\\.zendesk\\.com$"],
+      "http_indicators": ["Help Center Closed", "This help center no longer exists"],
+      "confidence": "high",
+      "dns_behavior": "CNAME to a Zendesk host; closed help centers leave the alias dangling",
+      "false_positive_warnings": ["Restricted help centers may show a login wall instead"],
+      "reference": "https://support.zendesk.com/"
+    },
+    {
+      "id": "readme",
+      "name": "ReadMe",
+      "cname_patterns": ["\\.readme\\.io$", "\\.readme\\.com$"],
+      "http_indicators": ["Project doesn't exist", "You may have mistyped the address"],
+      "confidence": "high",
+      "dns_behavior": "CNAME to ReadMe hosting; deleted projects return a not-found page",
+      "false_positive_warnings": [],
+      "reference": "https://docs.readme.com/"
+    },
+    {
+      "id": "unbounce",
+      "name": "Unbounce",
+      "cname_patterns": ["\\.unbouncepages\\.com$"],
+      "http_indicators": ["The requested URL was not found on this server"],
+      "confidence": "low",
+      "dns_behavior": "CNAME to unbouncepages.com; deleted pages return a generic 404",
+      "false_positive_warnings": ["Generic Apache 404 is not provider-specific"],
+      "reference": "https://help.unbounce.com/"
+    },
+    {
+      "id": "cargo",
+      "name": "Cargo",
+      "cname_patterns": ["\\.cargocollective\\.com$"],
+      "http_indicators": ["404 Not Found"],
+      "confidence": "low",
+      "dns_behavior": "CNAME to cargocollective.com",
+      "false_positive_warnings": ["Generic 404 text; verify manually"],
+      "reference": "https://support.cargo.site/"
+    },
+    {
+      "id": "statuspage",
+      "name": "Atlassian Statuspage",
+      "cname_patterns": ["\\.statuspage\\.io$"],
+      "http_indicators": ["This page is not available", "Statuspage"],
+      "confidence": "low",
+      "dns_behavior": "CNAME to statuspage.io; deleted pages leave DNS dangling",
+      "false_positive_warnings": ["Branding can include the word Statuspage on live pages"],
+      "reference": "https://support.atlassian.com/statuspage/"
+    },
+    {
+      "id": "mashery",
+      "name": "Mashery",
+      "cname_patterns": ["\\.mashery\\.com$"],
+      "http_indicators": ["Unrecognized domain", "This domain is not configured"],
+      "confidence": "high",
+      "dns_behavior": "CNAME to Mashery; removed API portals return unrecognized-domain",
+      "false_positive_warnings": [],
+      "reference": "https://docs.mashery.com/"
+    },
+    {
+      "id": "uservoice",
+      "name": "UserVoice",
+      "cname_patterns": ["\\.uservoice\\.com$"],
+      "http_indicators": ["This UserVoice subdomain is currently available!"],
+      "confidence": "high",
+      "dns_behavior": "CNAME to uservoice.com; deleted instances mark the subdomain available",
+      "false_positive_warnings": [],
+      "reference": "https://help.uservoice.com/"
+    },
+    {
+      "id": "ghost",
+      "name": "Ghost",
+      "cname_patterns": ["\\.ghost\\.io$"],
+      "http_indicators": ["The thing you were looking for is no longer here"],
+      "confidence": "medium",
+      "dns_behavior": "CNAME to ghost.io; deleted publications return a not-found page",
+      "false_positive_warnings": [],
+      "reference": "https://ghost.org/docs/"
+    },
+    {
+      "id": "sendgrid",
+      "name": "SendGrid",
+      "cname_patterns": ["\\.sendgrid\\.net$"],
+      "http_indicators": ["The page you are looking for doesn't exist"],
+      "confidence": "low",
+      "dns_behavior": "CNAME to sendgrid.net for link branding",
+      "false_positive_warnings": ["Link-branding CNAMEs are normal and not takeover candidates"],
+      "reference": "https://docs.sendgrid.com/"
+    },
+    {
+      "id": "ngrok",
+      "name": "ngrok",
+      "cname_patterns": ["\\.ngrok\\.io$", "\\.ngrok\\.app$", "\\.ngrok-free\\.app$"],
+      "http_indicators": ["Tunnel not found", "ngrok error", "ERR_NGROK"],
+      "confidence": "high",
+      "dns_behavior": "CNAME to an ngrok tunnel; expired tunnels return ERR_NGROK",
+      "false_positive_warnings": ["Tunnels are ephemeral by design; confirm the DNS owner"],
+      "reference": "https://ngrok.com/docs/"
+    },
+    {
+      "id": "fly-io",
+      "name": "Fly.io",
+      "cname_patterns": ["\\.fly\\.dev$"],
+      "http_indicators": ["404 Not Found"],
+      "confidence": "low",
+      "dns_behavior": "CNAME to fly.dev; deleted apps leave hostname unclaimed",
+      "false_positive_warnings": ["Generic 404; manual verification required"],
+      "reference": "https://fly.io/docs/"
+    },
+    {
+      "id": "render",
+      "name": "Render",
+      "cname_patterns": ["\\.onrender\\.com$"],
+      "http_indicators": ["Not Found"],
+      "confidence": "low",
+      "dns_behavior": "CNAME to onrender.com; deleted services leave the alias dangling",
+      "false_positive_warnings": ["Generic 404; manual verification required"],
+      "reference": "https://render.com/docs/"
+    },
+    {
+      "id": "railway",
+      "name": "Railway",
+      "cname_patterns": ["\\.up\\.railway\\.app$"],
+      "http_indicators": ["Application not found"],
+      "confidence": "medium",
+      "dns_behavior": "CNAME to up.railway.app; deleted services return application-not-found",
+      "false_positive_warnings": [],
+      "reference": "https://docs.railway.app/"
+    },
+    {
+      "id": "gitbook",
+      "name": "GitBook",
+      "cname_patterns": ["\\.gitbook\\.io$"],
+      "http_indicators": ["We couldn't find the page you're looking for"],
+      "confidence": "medium",
+      "dns_behavior": "CNAME to gitbook.io; deleted spaces return a not-found page",
+      "false_positive_warnings": [],
+      "reference": "https://docs.gitbook.com/"
+    },
+    {
+      "id": "helpscout",
+      "name": "Help Scout",
+      "cname_patterns": ["\\.helpscoutdocs\\.com$"],
+      "http_indicators": ["No settings were found for this company"],
+      "confidence": "high",
+      "dns_behavior": "CNAME to helpscoutdocs.com; removed docs sites return no-settings",
+      "false_positive_warnings": [],
+      "reference": "https://docs.helpscout.com/"
+    },
+    {
+      "id": "bigcartel",
+      "name": "Big Cartel",
+      "cname_patterns": ["\\.bigcartel\\.com$"],
+      "http_indicators": ["This shop is not available"],
+      "confidence": "medium",
+      "dns_behavior": "CNAME to bigcartel.com; closed shops return shop-not-available",
+      "false_positive_warnings": [],
+      "reference": "https://help.bigcartel.com/"
+    },
+    {
+      "id": "smartjobboard",
+      "name": "SmartJobBoard",
+      "cname_patterns": ["\\.smartjobboard\\.com$"],
+      "http_indicators": [
+        "This job board website is either expired or its domain name is invalid."
+      ],
+      "confidence": "high",
+      "dns_behavior": "CNAME to smartjobboard.com; expired boards return a specific message",
+      "false_positive_warnings": [],
+      "reference": "https://www.smartjobboard.com/"
+    },
+    {
+      "id": "discourse",
+      "name": "Discourse",
+      "cname_patterns": ["\\.discourse\\.group$"],
+      "http_indicators": ["The page you requested doesn't exist"],
+      "confidence": "low",
+      "dns_behavior": "CNAME to discourse.group",
+      "false_positive_warnings": ["Generic not-found text"],
+      "reference": "https://meta.discourse.org/"
+    },
+    {
+      "id": "kinsta",
+      "name": "Kinsta",
+      "cname_patterns": ["\\.kinsta\\.cloud$"],
+      "http_indicators": ["No Site For Domain"],
+      "confidence": "high",
+      "dns_behavior": "CNAME to kinsta.cloud; removed sites return No Site For Domain",
+      "false_positive_warnings": [],
+      "reference": "https://kinsta.com/docs/"
+    },
+    {
+      "id": "squarespace",
+      "name": "Squarespace",
+      "cname_patterns": ["\\.squarespace\\.com$"],
+      "http_indicators": ["No Such Domain", "This domain is not connected"],
+      "confidence": "medium",
+      "dns_behavior": "CNAME to squarespace.com; disconnected domains return No Such Domain",
+      "false_positive_warnings": [],
+      "reference": "https://support.squarespace.com/"
+    },
+    {
+      "id": "webflow",
+      "name": "Webflow",
+      "cname_patterns": ["\\.webflow\\.io$"],
+      "http_indicators": ["The page you are looking for doesn't exist"],
+      "confidence": "low",
+      "dns_behavior": "CNAME to webflow.io",
+      "false_positive_warnings": ["Generic 404 text"],
+      "reference": "https://help.webflow.com/"
+    },
+    {
+      "id": "notion",
+      "name": "Notion Sites",
+      "cname_patterns": ["\\.notion\\.site$"],
+      "http_indicators": ["This page could not be found"],
+      "confidence": "low",
+      "dns_behavior": "CNAME to notion.site",
+      "false_positive_warnings": ["Generic not-found text"],
+      "reference": "https://www.notion.so/help"
+    },
+    {
+      "id": "bubble",
+      "name": "Bubble",
+      "cname_patterns": ["\\.bubbleapps\\.io$"],
+      "http_indicators": ["This application is not currently available"],
+      "confidence": "medium",
+      "dns_behavior": "CNAME to bubbleapps.io; deleted apps return not-available",
+      "false_positive_warnings": [],
+      "reference": "https://manual.bubble.io/"
+    }
+  ]
+}

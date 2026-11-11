@@ -1,0 +1,24 @@
+{
+  "phases": [
+    "passive",
+    "dns",
+    "live",
+    "tls",
+    "historical",
+    "filter",
+    "sensitive",
+    "javascript",
+    "takeover",
+    "report"
+  ],
+  "timeout": 10.0,
+  "concurrency": 20,
+  "retries": 2,
+  "max_urls": 5000,
+  "cdx_limit": 500,
+  "commoncrawl_crawls": 1,
+  "js_analysis": false,
+  "resume": false,
+  "no_cache": false,
+  "quiet": false
+}

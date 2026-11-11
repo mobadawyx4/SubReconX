@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SubReconX report · example.com</title>
+<style>
+:root{--bg:#0b1220;--panel:#121b2e;--panel2:#0f1728;--text:#e6edf7;--muted:#8aa0bd;--line:#22304a;--accent:#38bdf8;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{padding:28px 32px;background:linear-gradient(135deg,#0f2740,#141b34);border-bottom:1px solid var(--line)}
+h1{margin:0;font-size:26px;letter-spacing:.3px}h2{margin:0 0 14px;font-size:19px}h3{margin:0 0 10px;font-size:15px;color:var(--muted)}
+a{color:var(--accent)}.muted{color:var(--muted)}nav{padding:12px 32px;background:var(--panel2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;display:flex;gap:16px;flex-wrap:wrap}
+nav a{text-decoration:none;color:var(--muted);font-weight:600}nav a:hover{color:var(--accent)}
+main{padding:24px 32px 64px;max-width:1500px;margin:0 auto}section{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin:18px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:18px}
+.card{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:10px;padding:14px}
+.card-value{font-size:26px;font-weight:700}.card-label{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+.metrics{display:flex;gap:24px;flex-wrap:wrap;margin:8px 0 16px}.metric{background:var(--panel2);padding:10px 16px;border-radius:8px;border:1px solid var(--line)}.metric strong{display:block;font-size:20px}.metric span{color:var(--muted);font-size:12px}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);text-transform:uppercase;font-size:11px;letter-spacing:.07em}
+.table-wrap{max-height:420px;overflow:auto;border:1px solid var(--line);border-radius:8px}
+td.url{word-break:break-all;max-width:520px}td.evidence{max-width:420px;color:var(--muted)}td.score{font-weight:700}
+.badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:800;letter-spacing:.06em}
+.sev-critical{background:#4c0519;color:#fecdd3}.sev-high{background:#4a1d05;color:#fed7aa}.sev-medium{background:#422006;color:#fde68a}.sev-low{background:#052e2b;color:#99f6e4}.sev-info{background:#172554;color:#bfdbfe}
+.overall{margin-bottom:10px}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:800px){.two-col{grid-template-columns:1fr}}
+.search{width:100%;max-width:420px;margin-bottom:12px;padding:9px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);color:var(--text)}
+footer{padding:24px 32px;color:var(--muted);border-top:1px solid var(--line);font-size:12px}
+.status{font-weight:700}
+</style></head>
+<body>
+<header>
+  <h1>SubReconX <span class="muted">v1.0.0</span></h1>
+  <div class="muted">Reconnaissance report for <strong>example.com</strong> · generated 2026-11-10 19:33:01 · duration 1m 55s <span class="badge sev-medium">MEDIUM</span></div>
+  <div class="cards"><div class="card"><div class="card-value">5</div><div class="card-label">Total discovered subdomains</div></div>
+<div class="card"><div class="card-value">3</div><div class="card-label">Unique subdomains</div></div>
+<div class="card"><div class="card-value">3</div><div class="card-label">In-scope assets</div></div>
+<div class="card"><div class="card-value">2</div><div class="card-label">Live hosts</div></div>
+<div class="card"><div class="card-value">1</div><div class="card-label">Dead hosts</div></div>
+<div class="card"><div class="card-value">0</div><div class="card-label">Unknown hosts</div></div>
+<div class="card"><div class="card-value">2</div><div class="card-label">Resolved DNS</div></div>
+<div class="card"><div class="card-value">2472</div><div class="card-label">Historical URLs</div></div>
+<div class="card"><div class="card-value">17</div><div class="card-label">JavaScript</div></div>
+<div class="card"><div class="card-value">98</div><div class="card-label">Sensitive indicators</div></div>
+<div class="card"><div class="card-value">0</div><div class="card-label">Takeover candidates</div></div></div>
+</header>
+<nav>
+  <a href="#intelligence">Bug Bounty Intel</a><a href="#risk">Risk</a><a href="#subdomains">Subdomains</a><a href="#live">Live/HTTP</a>
+  <a href="#tls">TLS</a><a href="#dns">DNS</a><a href="#historical">Historical</a>
+  <a href="#javascript">JavaScript</a><a href="#sensitive">Sensitive</a>
+  <a href="#takeover">Takeover</a><a href="#sources">Sources</a><a href="#tasks">Phases</a><a href="#errors">Errors</a>
+</nav>
+<main>
+
+    <section id="intelligence"><h2>Bug Bounty asset intelligence <span class="muted">(2 prioritized)</span></h2>
+    <div class="metrics">
+      <div class="metric"><strong>1</strong><span>high priority</span></div>
+      <div class="metric"><strong>1</strong><span>API routes</span></div>
+      <div class="metric"><strong>1</strong><span>auth paths</span></div>
+      <div class="metric"><strong>1</strong><span>admin paths</span></div>
+      <div class="metric"><strong>0</strong><span>dev/stage hosts</span></div>
+      <div class="metric"><strong>1</strong><span>legacy indicators</span></div>
+      <div class="metric"><strong>0</strong><span>unusual HTTP codes</span></div>
+    </div>
+    <input class="search" data-target="intel-table" placeholder="Filter prioritized assets…">
+    <div class="table-wrap"><table id="intel-table" class="filterable"><thead><tr><th>Priority</th><th>Asset</th><th>State &amp; Status</th><th>Tags</th><th>Indicator Explanations (Manual Review)</th></tr></thead>
+    <tbody><tr><td><span class="badge sev-high">HIGH</span> <span class='score'>65</span></td><td><strong>old-docs.example.com</strong><br><span class='muted'></span></td><td><span class="badge sev-critical">DEAD</span><br><span class='muted'>HTTPS:- / HTTP:-</span></td><td><span class="badge sev-info">legacy-indicator</span> <span class="badge sev-info">dangling-dns</span> <span class="badge sev-info">takeover-candidate</span></td><td class='evidence'>• <strong>dangling_dns</strong>: Hostname old-docs.example.com has a CNAME pointing to example-docs.github.io which returned NXDOMAIN.</td></tr><tr><td><span class="badge sev-medium">MEDIUM</span> <span class='score'>45</span></td><td><strong>example.com</strong><br><span class='muted'>Example Domain</span></td><td><span class="badge sev-low">LIVE</span><br><span class='muted'>HTTPS:200 / HTTP:200</span></td><td><span class="badge sev-info">live</span> <span class="badge sev-info">admin-interface</span> <span class="badge sev-info">authentication-surface</span></td><td class='evidence'>• <strong>admin_interface</strong>: Administrative path indicator (/admin/login) observed in historical URLs.</td></tr></tbody></table></div>
+    <p class="muted">Prioritized indicators for authorized manual Bug Bounty assessment. Keyword and metadata matches are not automatically classified as vulnerabilities.</p>
+    </section>
+
+    <section id="risk"><h2>Risk assessment</h2>
+    <div class="overall"><span class="badge sev-medium">MEDIUM</span> <span class="muted">overall severity · score 57/100</span></div>
+    <p><span class="badge sev-critical">CRITICAL</span> <span class="muted">0</span> <span class="badge sev-high">HIGH</span> <span class="muted">0</span> <span class="badge sev-medium">MEDIUM</span> <span class="muted">6</span> <span class="badge sev-low">LOW</span> <span class="muted">5</span> <span class="badge sev-info">INFORMATIONAL</span> <span class="muted">1</span></p>
+    <div class="table-wrap"><table class="filterable"><thead><tr><th>Severity</th><th>Score</th><th>Finding</th><th>Evidence</th></tr></thead>
+    <tbody><tr><td><span class="badge sev-medium">MEDIUM</span></td><td class='score'>57</td><td><strong>Sensitive-path indicators: environment configuration</strong><br><span class='muted'>2 URL path/parameter-name indicator(s) matched the &#x27;environment_configuration&#x27; patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.</span></td><td class='evidence'>path: (?:^|/)settings(?:\.(?:php|json|ya?ml|xml|ini|conf))?$ -&gt; https://example.com/api/settings<br>path: (?:^|/)config(?:uration)?(?:\.(?:php|json|ya?ml|xml|ini|conf))?$ -&gt; https://console.example.com/api/config</td></tr><tr><td><span class="badge sev-medium">MEDIUM</span></td><td class='score'>56</td><td><strong>Sensitive-path indicators: git exposure</strong><br><span class='muted'>1 URL path/parameter-name indicator(s) matched the &#x27;git_exposure&#x27; patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.</span></td><td class='evidence'>path: (?:^|/)\.git(?:/|$) -&gt; http://example.com/.git/</td></tr><tr><td><span class="badge sev-medium">MEDIUM</span></td><td class='score'>52</td><td><strong>Sensitive-path indicators: databases</strong><br><span class='muted'>2 URL path/parameter-name indicator(s) matched the &#x27;databases&#x27; patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.</span></td><td class='evidence'>path: \.(?:sql|sqlite|sqlite3|db)$ -&gt; http://example.com/poc.sql<br>path: \.(?:sql|sqlite|sqlite3|db)$ -&gt; http://example.com/evil.sql</td></tr><tr><td><span class="badge sev-medium">MEDIUM</span></td><td class='score'>48</td><td><strong>Historical references to configuration files</strong><br><span class='muted'>2 historical URL(s) end in a config extension. Historical references do not prove current exposure and the content was not downloaded.</span></td><td class='evidence'>https://example.com/x.ini<br>https://example.com/a.ini</td></tr><tr><td><span class="badge sev-medium">MEDIUM</span></td><td class='score'>48</td><td><strong>Historical references to database files</strong><br><span class='muted'>2 historical URL(s) end in a databases extension. Historical references do not prove current exposure and the content was not downloaded.</span></td><td class='evidence'>http://example.com/poc.sql<br>http://example.com/evil.sql</td></tr><tr><td><span class="badge sev-medium">MEDIUM</span></td><td class='score'>48</td><td><strong>Historical references to yaml configuration</strong><br><span class='muted'>12 historical URL(s) end in a yaml extension. Historical references do not prove current exposure and the content was not downloaded.</span></td><td class='evidence'>http://example.com/bad.yml<br>https://example.com/template.yml<br>http://templates.example.com/ci.yml<br>https://templates.example.com/ci.yml<br>https://example.com/clash.yaml<br>https://rules.example.com/steam.yaml<br>http://example.com/x.yaml<br>http://example.com/root.yaml</td></tr><tr><td><span class="badge sev-low">LOW</span></td><td class='score'>40</td><td><strong>Sensitive-path indicators: administrative</strong><br><span class='muted'>20 URL path/parameter-name indicator(s) matched the &#x27;administrative&#x27; patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.</span></td><td class='evidence'>path: (?:^|/)(?:admin|administrator)(?:/|$) -&gt; https://example.com/mobile/v3/admin/users<br>path: (?:^|/)(?:admin|administrator)(?:/|$) -&gt; http://example.com/admin/<br>path: (?:^|/)(?:admin|administrator)(?:/|$) -&gt; https://example.com/ADMIN<br>path: (?:^|/)(?:admin|administrator)(?:/|$) -&gt; https://example.com/admin<br>path: (?:^|/)(?:admin|administrator)(?:/|$) -&gt; https://example.com/Admin<br>path: (?:^|/)(?:console|dashboard|manage|management)(?:/|$) -&gt; https://example.com/console<br>path: (?:^|/)(?:admin|administrator)(?:/|$) -&gt; https://example.com/path/admin/catalog/succ<br>path: (?:^|/)(?:console|dashboard|manage|management)(?:/|$) -&gt; https://example.com/manage</td></tr><tr><td><span class="badge sev-low">LOW</span></td><td class='score'>40</td><td><strong>Sensitive-path indicators: internal resources</strong><br><span class='muted'>10 URL path/parameter-name indicator(s) matched the &#x27;internal_resources&#x27; patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.</span></td><td class='evidence'>path: (?:^|/)(?:staging|stage|dev|development|test|testing|debug)(?:/|$) -&gt; https://example.com/actuator/gateway/routes/test<br>path: (?:^|/)(?:staging|stage|dev|development|test|testing|debug)(?:/|$) -&gt; https://example.com/papi/esearch/data/devops/dubboApi/debug/method<br>path: (?:^|/)(?:staging|stage|dev|development|test|testing|debug)(?:/|$) -&gt; http://example.com/Test<br>path: (?:^|/)(?:staging|stage|dev|development|test|testing|debug)(?:/|$) -&gt; https://example.com/testing<br>path: (?:^|/)(?:internal|private|intranet)(?:/|$) -&gt; https://edge.example.com/internal<br>path: (?:^|/)(?:internal|private|intranet)(?:/|$) -&gt; https://example.com/hooks/private<br>path: (?:^|/)(?:staging|stage|dev|development|test|testing|debug)(?:/|$) -&gt; https://edge.example.com/test<br>path: (?:^|/)(?:staging|stage|dev|development|test|testing|debug)(?:/|$) -&gt; https://gateway.example.com/workspace/dev/us/v1/tunnels/</td></tr><tr><td><span class="badge sev-low">LOW</span></td><td class='score'>39</td><td><strong>Sensitive-path indicators: backups</strong><br><span class='muted'>4 URL path/parameter-name indicator(s) matched the &#x27;backups&#x27; patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.</span></td><td class='evidence'>path: (?:^|/)(?:backups?|dump|exports?|restore)(?:/|$) -&gt; https://gitlab-backup.example.com/backup/repo<br>path: (?:^|/)(?:backups?|dump|exports?|restore)(?:/|$) -&gt; https://gitlab-backup.example.com/backup/myproject<br>path: (?:^|/)(?:backups?|dump|exports?|restore)(?:/|$) -&gt; https://example.com/export<br>path: (?:^|/)(?:archive|old)(?:/|$) -&gt; https://example.com/old/foo.git</td></tr><tr><td><span class="badge sev-low">LOW</span></td><td class='score'>35</td><td><strong>Sensitive-path indicators: authentication</strong><br><span class='muted'>41 URL path/parameter-name indicator(s) matched the &#x27;authentication&#x27; patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.</span></td><td class='evidence'>path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -&gt; https://api.example.com/api/auth/login<br>path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -&gt; https://google.com.example.com/login<br>path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -&gt; https://example.com/login/1<br>path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -&gt; https://example.com/general/login/<br>path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -&gt; https://example.com/2026/05/28/token<br>path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -&gt; https://example.com/mobile/v1/auth/login<br>path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -&gt; https://example.com/auth/cloud<br>path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -&gt; https://example.com/druid/login</td></tr><tr><td><span class="badge sev-low">LOW</span></td><td class='score'>35</td><td><strong>Sensitive-path indicators: business sensitive</strong><br><span class='muted'>18 URL path/parameter-name indicator(s) matched the &#x27;business_sensitive&#x27; patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.</span></td><td class='evidence'>path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -&gt; https://example.com/mobile/v1/users/1<br>path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -&gt; https://example.com/web/v1/users/profile<br>path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -&gt; https://example.com/mobile/v3/users<br>path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -&gt; https://example.com/mobile/v3/users/profile<br>path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -&gt; https://example.com/mobile/v3/admin/users<br>path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -&gt; https://example.com/mobile/v2/users/profile<br>path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -&gt; https://example.com/mobile/users/profile<br>path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -&gt; https://example.com/web/v1/users/1</td></tr><tr><td><span class="badge sev-info">INFORMATIONAL</span></td><td class='score'>10</td><td><strong>JavaScript asset inventory collected</strong><br><span class='muted'>17 JavaScript asset URL(s) were inventoried. This is attack-surface context, not a vulnerability.</span></td><td class='evidence'></td></tr></tbody></table></div>
+    <p class="muted">Critical is never auto-assigned. All findings are indicators requiring authorized manual validation.</p>
+    </section>
+
+    <section id="subdomains"><h2>Subdomains &amp; liveness classification <span class="muted">(3)</span></h2>
+    <input class="search" data-target="subdomains-table" placeholder="Filter subdomains…">
+    <div class="table-wrap"><table id="subdomains-table" class="filterable"><thead><tr><th>Hostname</th><th>In Scope</th><th>Classification</th><th>Reason</th><th>Sources</th></tr></thead>
+    <tbody><tr><td>example.com</td><td>yes</td><td><span class="badge sev-low">LIVE</span></td><td class='muted'>HTTP 200 received over HTTPS</td><td class='muted'>root, crt.sh</td></tr><tr><td>www.example.com</td><td>yes</td><td><span class="badge sev-low">LIVE</span></td><td class='muted'>HTTP 200 received over HTTPS</td><td class='muted'>crt.sh, otx</td></tr><tr><td>old-docs.example.com</td><td>yes</td><td><span class="badge sev-critical">DEAD</span></td><td class='muted'>dangling CNAME target returns NXDOMAIN</td><td class='muted'>crt.sh</td></tr></tbody></table></div>
+    </section>
+
+    <section id="live"><h2>Live hosts &amp; HTTP <span class="muted">(4)</span></h2>
+    <input class="search" data-target="http-table" placeholder="Filter HTTP results…">
+    <div class="table-wrap"><table id="http-table" class="filterable"><thead><tr><th>Host</th><th>Scheme</th><th>Status</th><th>Server</th><th>Tech</th><th>Title</th><th>Final URL</th><th>Error</th></tr></thead>
+    <tbody><tr><td>example.com</td><td>http</td><td class='status'>200</td><td>cloudflare</td><td>Cloudflare</td><td>Example Domain</td><td>http://example.com/</td><td></td></tr><tr><td>example.com</td><td>https</td><td class='status'>200</td><td>cloudflare</td><td>Cloudflare</td><td>Example Domain</td><td>https://example.com/</td><td></td></tr><tr><td>www.example.com</td><td>http</td><td class='status'>200</td><td>cloudflare</td><td>Cloudflare</td><td>Example Domain</td><td>http://www.example.com/</td><td></td></tr><tr><td>www.example.com</td><td>https</td><td class='status'>200</td><td>cloudflare</td><td>Cloudflare</td><td>Example Domain</td><td>https://www.example.com/</td><td></td></tr></tbody></table></div>
+    </section>
+
+    <section id="tls"><h2>TLS certificates <span class="muted">(2)</span></h2>
+    <input class="search" data-target="tls-table" placeholder="Filter TLS certificates…">
+    <div class="table-wrap"><table id="tls-table" class="filterable"><thead><tr><th>Host</th><th>Chain</th><th>Protocol</th><th>Subject CN</th><th>Issuer</th><th>SANs</th><th>Expires</th><th>Days left</th></tr></thead>
+    <tbody><tr><td>example.com</td><td>verified</td><td>TLSv1.3</td><td>example.com</td><td>Cloudflare TLS Issuing ECC CA 3</td><td>example.com, *.example.com</td><td>Dec 25 22:56:35 2026 GMT</td><td>45</td></tr><tr><td>www.example.com</td><td>verified</td><td>TLSv1.3</td><td>example.com</td><td>Cloudflare TLS Issuing ECC CA 3</td><td>example.com, *.example.com</td><td>Dec 25 22:56:35 2026 GMT</td><td>45</td></tr></tbody></table></div>
+    </section>
+
+    <section id="dns"><h2>DNS analysis <span class="muted">(3)</span></h2>
+    <input class="search" data-target="dns-table" placeholder="Filter DNS records…">
+    <div class="table-wrap"><table id="dns-table" class="filterable"><thead><tr><th>Host</th><th>Status</th><th>A</th><th>AAAA</th><th>CNAME</th><th>RCODE</th><th>Dangling</th></tr></thead>
+    <tbody><tr><td>emudhra-lab.example.com</td><td>no_records</td><td></td><td></td><td></td><td>NOERROR</td><td></td></tr><tr><td>example.com</td><td>resolved</td><td>172.66.147.243, 104.20.23.154</td><td>2606:4700:10::6814:179a, 2606:4700:10::ac42:93f3</td><td></td><td>NOERROR</td><td></td></tr><tr><td>www.example.com</td><td>resolved</td><td>172.66.147.243, 104.20.23.154</td><td>2606:4700:10::6814:179a, 2606:4700:10::ac42:93f3</td><td></td><td>NOERROR</td><td></td></tr></tbody></table></div>
+    </section>
+
+    <section id="historical"><h2>Historical URLs</h2>
+    <div class="metrics">
+      <div class="metric"><strong>2472</strong><span>total</span></div>
+      <div class="metric"><strong>2472</strong><span>in scope</span></div>
+      <div class="metric"><strong>0</strong><span>out of scope</span></div>
+      <div class="metric"><strong>10</strong><span>malformed</span></div>
+    </div>
+    <div class="two-col">
+      <div><h3>By source</h3><table><thead><tr><th>Source</th><th>URLs</th></tr></thead><tbody><tr><td>otx</td><td>2472</td></tr></tbody></table></div>
+      <div><h3>By file category</h3><table><thead><tr><th>Category</th><th>URLs</th></tr></thead><tbody><tr><td>archives</td><td>62</td></tr><tr><td>backups</td><td>0</td></tr><tr><td>config</td><td>2</td></tr><tr><td>databases</td><td>2</td></tr><tr><td>documents</td><td>2</td></tr><tr><td>environment</td><td>0</td></tr><tr><td>images</td><td>94</td></tr><tr><td>javascript</td><td>17</td></tr><tr><td>json</td><td>39</td></tr><tr><td>jspx</td><td>0</td></tr><tr><td>logs</td><td>0</td></tr><tr><td>pdf</td><td>13</td></tr><tr><td>php</td><td>9</td></tr><tr><td>text</td><td>12</td></tr><tr><td>xml</td><td>11</td></tr><tr><td>yaml</td><td>12</td></tr></tbody></table></div>
+    </div>
+    <p class="muted">Out-of-scope references are recorded only and were never probed. Sensitive query values are redacted.</p>
+    </section>
+
+    <section id="javascript"><h2>JavaScript inventory <span class="muted">(8)</span></h2>
+    <input class="search" data-target="js-table" placeholder="Filter JavaScript assets…">
+    <div class="table-wrap"><table id="js-table" class="filterable"><thead><tr><th>Host</th><th>Asset URL</th><th>Sources</th><th>HTTP Status</th><th>Endpoints</th></tr></thead>
+    <tbody><tr><td>static.example.com</td><td class='url'>http://static.example.com/helper.js</td><td class='muted'></td><td></td><td>0</td></tr><tr><td>cdn.example.com</td><td class='url'>https://cdn.example.com/.awswaf.com/a/challenge.js</td><td class='muted'></td><td></td><td>0</td></tr><tr><td>cdn.example.com</td><td class='url'>https://cdn.example.com/challenge.js</td><td class='muted'></td><td></td><td>0</td></tr><tr><td>cdn.example.com</td><td class='url'>https://cdn.example.com/checks.js</td><td class='muted'></td><td></td><td>0</td></tr><tr><td>example.com</td><td class='url'>https://example.com/b.js</td><td class='muted'></td><td></td><td>0</td></tr><tr><td>example.com</td><td class='url'>https://example.com/bad.js</td><td class='muted'></td><td></td><td>0</td></tr><tr><td>example.com</td><td class='url'>https://example.com/bundle.js</td><td class='muted'></td><td></td><td>0</td></tr><tr><td>example.com</td><td class='url'>https://example.com/camel.js</td><td class='muted'></td><td></td><td>0</td></tr></tbody></table></div>
+
+    </section>
+
+    <section id="sensitive"><h2>Sensitive indicators <span class="muted">(8)</span></h2>
+    <input class="search" data-target="sensitive-table" placeholder="Filter indicators…">
+    <div class="table-wrap"><table id="sensitive-table" class="filterable"><thead><tr><th>Severity</th><th>Category</th><th>Kind</th><th>Indicator</th><th>Redacted URL</th></tr></thead>
+    <tbody><tr><td><span class="badge sev-medium">MEDIUM</span></td><td>authentication</td><td>path</td><td>(?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$)</td><td class='url'>https://api.example.com/api/auth/login</td></tr><tr><td><span class="badge sev-medium">MEDIUM</span></td><td>authentication</td><td>path</td><td>(?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$)</td><td class='url'>https://google.com.example.com/login</td></tr><tr><td><span class="badge sev-medium">MEDIUM</span></td><td>authentication</td><td>path</td><td>(?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$)</td><td class='url'>https://example.com/login/1</td></tr><tr><td><span class="badge sev-medium">MEDIUM</span></td><td>authentication</td><td>path</td><td>(?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$)</td><td class='url'>https://example.com/general/login/</td></tr><tr><td><span class="badge sev-medium">MEDIUM</span></td><td>authentication</td><td>path</td><td>(?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$)</td><td class='url'>https://example.com/2026/05/28/token</td></tr><tr><td><span class="badge sev-high">HIGH</span></td><td>environment_configuration</td><td>path</td><td>(?:^|/)settings(?:\.(?:php|json|ya?ml|xml|ini|conf))?$</td><td class='url'>https://example.com/api/settings</td></tr><tr><td><span class="badge sev-medium">MEDIUM</span></td><td>business_sensitive</td><td>path</td><td>(?:^|/)(?:users|customers|customer|confidential|private)(?:/|$)</td><td class='url'>https://example.com/mobile/v1/users/1</td></tr><tr><td><span class="badge sev-medium">MEDIUM</span></td><td>authentication</td><td>path</td><td>(?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$)</td><td class='url'>https://example.com/mobile/v1/auth/login</td></tr></tbody></table></div>
+    <p class="muted">Path and parameter-NAME matches only. Values are redacted; no referenced file was downloaded.</p>
+    </section>
+
+    <section id="takeover"><h2>Takeover candidates <span class="muted">(0)</span></h2>
+    <div class="table-wrap"><table><thead><tr><th>Severity</th><th>Host</th><th>CNAME target</th><th>Provider</th><th>Confidence</th><th>Classification</th><th>Evidence</th></tr></thead>
+    <tbody><tr><td colspan='7' class='muted'>None.</td></tr></tbody></table></div>
+    <p class="muted">Indicators only. No resource was claimed, registered or provisioned. Authorized manual verification required.</p>
+    </section>
+
+    <section id="sources"><h2>Source attribution</h2>
+    <table><thead><tr><th>Source</th><th>Records</th><th>Cached</th><th>Error</th></tr></thead>
+    <tbody><tr><td>crt.sh</td><td>0</td><td>no</td><td>http-404</td></tr><tr><td>certspotter</td><td>3</td><td>no</td><td></td></tr><tr><td>otx</td><td>2500</td><td>no</td><td>http-429</td></tr><tr><td>wayback</td><td>0</td><td>no</td><td>The read operation timed out</td></tr><tr><td>commoncrawl</td><td>0</td><td>no</td><td>CC-MAIN-2026-43:http-504</td></tr></tbody></table>
+    </section>
+
+    <section id="tasks"><h2>Scan phases</h2>
+    <table><thead><tr><th>Phase</th><th>Status</th><th>Duration</th><th>Summary</th><th>Error</th></tr></thead>
+    <tbody><tr><td>passive</td><td>done</td><td>3.057s</td><td>3 hosts</td><td></td></tr><tr><td>dns</td><td>done</td><td>0.341s</td><td>2 resolved</td><td></td></tr><tr><td>live</td><td>done</td><td>0.409s</td><td>2 live</td><td></td></tr><tr><td>tls</td><td>done</td><td>0.23s</td><td>2 connected</td><td></td></tr><tr><td>historical</td><td>done</td><td>111.131s</td><td>2472 in-scope URLs</td><td></td></tr><tr><td>filter</td><td>done</td><td>0.238s</td><td>275 classified</td><td></td></tr><tr><td>javascript</td><td>done</td><td>0.076s</td><td>17 assets</td><td></td></tr><tr><td>sensitive</td><td>done</td><td>0.21s</td><td>98 indicators</td><td></td></tr><tr><td>takeover</td><td>done</td><td>0.004s</td><td>0 candidates</td><td></td></tr><tr><td>risk</td><td>done</td><td>0.002s</td><td>overall medium</td><td></td></tr></tbody></table>
+    </section>
+
+    <section id="errors"><h2>Errors <span class="muted">(0)</span></h2>
+    <table><thead><tr><th>Phase</th><th>Message</th><th>Time</th></tr></thead>
+    <tbody><tr><td colspan='3' class='muted'>None.</td></tr></tbody></table>
+    </section>
+</main>
+<footer>
+  SubReconX v1.0.0 · Passive and safe active reconnaissance for AUTHORIZED targets only.
+  Findings are indicators, not confirmed vulnerabilities. No exploitation, authentication, file download or resource claiming was performed.
+</footer>
+<script>
+document.querySelectorAll('input.search').forEach(function(input){
+  input.addEventListener('input', function(){
+    var target = document.getElementById(input.dataset.target);
+    if(!target) return;
+    var q = input.value.toLowerCase();
+    target.querySelectorAll('tbody tr').forEach(function(row){
+      row.style.display = row.textContent.toLowerCase().indexOf(q) !== -1 ? '' : 'none';
+    });
+  });
+});
+</script>
+</body></html>

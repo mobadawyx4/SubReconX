@@ -1,0 +1,1251 @@
+{
+  "meta": {
+    "tool": "SubReconX",
+    "version": "1.0.0",
+    "domain": "example.com",
+    "generated_at": "2026-11-10 19:33:01",
+    "duration_seconds": 115.702,
+    "duration_human": "1m 55s",
+    "output_dir": "results/example.com",
+    "phases_enabled": [
+      "passive",
+      "dns",
+      "live",
+      "tls",
+      "historical",
+      "filter",
+      "sensitive",
+      "javascript",
+      "takeover",
+      "report"
+    ]
+  },
+  "subdomains": {
+    "root": "example.com",
+    "count": 3,
+    "hosts": [
+      {
+        "hostname": "emudhra-lab.example.com",
+        "source": "certspotter",
+        "not_before": "2026-10-20T20:27:24Z",
+        "not_after": "2027-05-03T20:27:24Z",
+        "sources": [
+          "certspotter"
+        ]
+      },
+      {
+        "hostname": "example.com",
+        "sources": [
+          "root"
+        ],
+        "source": "root"
+      },
+      {
+        "hostname": "www.example.com",
+        "source": "certspotter",
+        "not_before": "2025-11-21T00:00:00Z",
+        "not_after": "2026-11-21T23:59:59Z",
+        "sources": [
+          "certspotter"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "source": "crt.sh",
+        "count": 0,
+        "cached": false,
+        "error": "http-404"
+      },
+      {
+        "source": "certspotter",
+        "count": 3,
+        "cached": false,
+        "error": ""
+      },
+      {
+        "source": "otx",
+        "count": 0,
+        "cached": false,
+        "error": "http-429"
+      }
+    ],
+    "bruteforce_resolved": [],
+    "errors": []
+  },
+  "dns": {
+    "root": "example.com",
+    "count": 3,
+    "resolved": [
+      "example.com",
+      "www.example.com"
+    ],
+    "unresolved": [
+      "emudhra-lab.example.com"
+    ],
+    "cname_records": [],
+    "dangling": [],
+    "suspicious": [],
+    "records": [
+      {
+        "hostname": "emudhra-lab.example.com",
+        "status": "no_records",
+        "resolved": false,
+        "a": [],
+        "aaaa": [],
+        "cname": [],
+        "cname_chain": [],
+        "ns": [],
+        "mx": [],
+        "txt": [],
+        "soa": [],
+        "rcode": "NOERROR",
+        "dangling": false,
+        "private_ips": [],
+        "errors": []
+      },
+      {
+        "hostname": "example.com",
+        "status": "resolved",
+        "resolved": true,
+        "a": [
+          "172.66.147.243",
+          "104.20.23.154"
+        ],
+        "aaaa": [
+          "2606:4700:10::6814:179a",
+          "2606:4700:10::ac42:93f3"
+        ],
+        "cname": [],
+        "cname_chain": [],
+        "ns": [
+          "hera.ns.cloudflare.com",
+          "elliott.ns.cloudflare.com"
+        ],
+        "mx": [
+          "0 "
+        ],
+        "txt": [
+          "v=spf1 -all",
+          "_k2n1y4vw3qtb4skdx9e7dxt97qrmmq9"
+        ],
+        "soa": [
+          "elliott.ns.cloudflare.com dns.cloudflare.com 2418004112 10000 2400 604800 1800"
+        ],
+        "rcode": "NOERROR",
+        "dangling": false,
+        "private_ips": [],
+        "errors": []
+      },
+      {
+        "hostname": "www.example.com",
+        "status": "resolved",
+        "resolved": true,
+        "a": [
+          "172.66.147.243",
+          "104.20.23.154"
+        ],
+        "aaaa": [
+          "2606:4700:10::6814:179a",
+          "2606:4700:10::ac42:93f3"
+        ],
+        "cname": [],
+        "cname_chain": [],
+        "ns": [],
+        "mx": [],
+        "txt": [],
+        "soa": [],
+        "rcode": "NOERROR",
+        "dangling": false,
+        "private_ips": [],
+        "errors": []
+      }
+    ]
+  },
+  "http": {
+    "count": 4,
+    "live_hosts": [
+      "example.com",
+      "www.example.com"
+    ],
+    "errors": [],
+    "results": [
+      {
+        "url": "http://example.com/",
+        "final_url": "http://example.com/",
+        "scheme": "http",
+        "hostname": "example.com",
+        "status": 200,
+        "reason": "OK",
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "content_length": null,
+        "title": "Example Domain",
+        "elapsed": 0.0911,
+        "redirect_chain": [],
+        "redirect_rejected": "",
+        "tls_verified": null,
+        "tls_error": "",
+        "ip_used": "172.66.147.243",
+        "error": "",
+        "headers": {
+          "date": "Tue, 10 Nov 2026 17:31:10 GMT",
+          "content-type": "text/html; charset=utf-8",
+          "transfer-encoding": "chunked",
+          "connection": "close",
+          "server": "cloudflare",
+          "last-modified": "Thu, 05 Nov 2026 21:17:41 GMT",
+          "allow": "GET, HEAD",
+          "accept-ranges": "bytes",
+          "age": "0",
+          "cf-cache-status": "HIT",
+          "cf-ray": "a586ca0b7c9999f2-MRS",
+          "alt-svc": "h3=\":443\"; ma=86400"
+        },
+        "technologies": [
+          "Cloudflare"
+        ]
+      },
+      {
+        "url": "https://example.com/",
+        "final_url": "https://example.com/",
+        "scheme": "https",
+        "hostname": "example.com",
+        "status": 200,
+        "reason": "OK",
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "content_length": null,
+        "title": "Example Domain",
+        "elapsed": 0.2277,
+        "redirect_chain": [],
+        "redirect_rejected": "",
+        "tls_verified": true,
+        "tls_error": "",
+        "ip_used": "104.20.23.154",
+        "error": "",
+        "headers": {
+          "date": "Tue, 10 Nov 2026 17:31:09 GMT",
+          "content-type": "text/html; charset=utf-8",
+          "transfer-encoding": "chunked",
+          "connection": "close",
+          "server": "cloudflare",
+          "last-modified": "Thu, 05 Nov 2026 21:17:41 GMT",
+          "allow": "GET, HEAD",
+          "accept-ranges": "bytes",
+          "age": "9",
+          "cf-cache-status": "HIT",
+          "cf-ray": "a586ca0add9de187-MRS",
+          "alt-svc": "h3=\":443\"; ma=86400"
+        },
+        "technologies": [
+          "Cloudflare"
+        ]
+      },
+      {
+        "url": "http://www.example.com/",
+        "final_url": "http://www.example.com/",
+        "scheme": "http",
+        "hostname": "www.example.com",
+        "status": 200,
+        "reason": "OK",
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "content_length": null,
+        "title": "Example Domain",
+        "elapsed": 0.1033,
+        "redirect_chain": [],
+        "redirect_rejected": "",
+        "tls_verified": null,
+        "tls_error": "",
+        "ip_used": "172.66.147.243",
+        "error": "",
+        "headers": {
+          "date": "Tue, 10 Nov 2026 17:31:10 GMT",
+          "content-type": "text/html; charset=utf-8",
+          "transfer-encoding": "chunked",
+          "connection": "close",
+          "server": "cloudflare",
+          "last-modified": "Thu, 05 Nov 2026 21:17:41 GMT",
+          "allow": "GET, HEAD",
+          "accept-ranges": "bytes",
+          "age": "7191",
+          "cf-cache-status": "HIT",
+          "cf-ray": "a586ca0b799ce1cc-MRS",
+          "alt-svc": "h3=\":443\"; ma=86400"
+        },
+        "technologies": [
+          "Cloudflare"
+        ]
+      },
+      {
+        "url": "https://www.example.com/",
+        "final_url": "https://www.example.com/",
+        "scheme": "https",
+        "hostname": "www.example.com",
+        "status": 200,
+        "reason": "OK",
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "content_length": null,
+        "title": "Example Domain",
+        "elapsed": 0.1817,
+        "redirect_chain": [],
+        "redirect_rejected": "",
+        "tls_verified": true,
+        "tls_error": "",
+        "ip_used": "104.20.23.154",
+        "error": "",
+        "headers": {
+          "date": "Tue, 10 Nov 2026 17:31:09 GMT",
+          "content-type": "text/html; charset=utf-8",
+          "transfer-encoding": "chunked",
+          "connection": "close",
+          "server": "cloudflare",
+          "last-modified": "Sun, 08 Nov 2026 18:05:34 GMT",
+          "allow": "GET, HEAD",
+          "accept-ranges": "bytes",
+          "age": "7165",
+          "cf-cache-status": "HIT",
+          "cf-ray": "a586ca0adac4f4f6-MRS",
+          "alt-svc": "h3=\":443\"; ma=86400"
+        },
+        "technologies": [
+          "Cloudflare"
+        ]
+      }
+    ]
+  },
+  "tls": {
+    "count": 2,
+    "results": [
+      {
+        "hostname": "example.com",
+        "port": 443,
+        "connected": true,
+        "verified": true,
+        "verification_error": "",
+        "protocol": "TLSv1.3",
+        "cipher": "TLS_AES_256_GCM_SHA384",
+        "subject": {
+          "commonName": "example.com"
+        },
+        "issuer": {
+          "countryName": "US",
+          "organizationName": "SSL Corporation",
+          "commonName": "Cloudflare TLS Issuing ECC CA 3"
+        },
+        "serial_number": "",
+        "not_before": "Sep 26 22:49:11 2026 GMT",
+        "not_after": "Dec 25 22:56:35 2026 GMT",
+        "sans": [
+          "example.com",
+          "*.example.com"
+        ],
+        "expired": false,
+        "days_until_expiry": 45,
+        "hostname_matches": true,
+        "error": ""
+      },
+      {
+        "hostname": "www.example.com",
+        "port": 443,
+        "connected": true,
+        "verified": true,
+        "verification_error": "",
+        "protocol": "TLSv1.3",
+        "cipher": "TLS_AES_256_GCM_SHA384",
+        "subject": {
+          "commonName": "example.com"
+        },
+        "issuer": {
+          "countryName": "US",
+          "organizationName": "SSL Corporation",
+          "commonName": "Cloudflare TLS Issuing ECC CA 3"
+        },
+        "serial_number": "",
+        "not_before": "Sep 26 22:49:11 2026 GMT",
+        "not_after": "Dec 25 22:56:35 2026 GMT",
+        "sans": [
+          "example.com",
+          "*.example.com"
+        ],
+        "expired": false,
+        "days_until_expiry": 45,
+        "hostname_matches": true,
+        "error": ""
+      }
+    ],
+    "errors": []
+  },
+  "historical": {
+    "total": 2472,
+    "in_scope": 2472,
+    "out_of_scope": 0,
+    "malformed": [
+      "http://YOUR_SUB.example.com",
+      "https://-a.example.com/jwks.json",
+      "https://auth_server.example.com/",
+      "httptest.example.com/",
+      "https://evil.example.com...",
+      "https://api.example.com...",
+      "https://group-%d.example.com/v1",
+      "https://external-control-first-%d.example.com/v1",
+      "https://external-control-second-%d.example.com/v1error",
+      "https://.example.com"
+    ],
+    "source_stats": {
+      "otx": 2472
+    },
+    "sources": [
+      {
+        "source": "wayback",
+        "count": 0,
+        "cached": false,
+        "error": "The read operation timed out"
+      },
+      {
+        "source": "commoncrawl",
+        "count": 0,
+        "cached": false,
+        "error": "CC-MAIN-2026-43:http-504"
+      },
+      {
+        "source": "otx",
+        "count": 2500,
+        "cached": false,
+        "error": ""
+      }
+    ],
+    "errors": [],
+    "records": [
+      {
+        "url": "https://git.example.com/org/app.git",
+        "normalized": "https://git.example.com/org/app.git",
+        "hostname": "git.example.com",
+        "path": "/org/app.git",
+        "extension": "git",
+        "params": [],
+        "sources": [
+          "otx"
+        ],
+        "timestamp": "2026-11-10T16:20:11",
+        "in_scope": true
+      },
+      {
+        "url": "https://git.example.com/org/app",
+        "normalized": "https://git.example.com/org/app",
+        "hostname": "git.example.com",
+        "path": "/org/app",
+        "extension": "",
+        "params": [],
+        "sources": [
+          "otx"
+        ],
+        "timestamp": "2026-11-10T16:20:10",
+        "in_scope": true
+      },
+      {
+        "url": "https://blossom.example.com",
+        "normalized": "https://blossom.example.com/",
+        "hostname": "blossom.example.com",
+        "path": "/",
+        "extension": "",
+        "params": [],
+        "sources": [
+          "otx"
+        ],
+        "timestamp": "2026-11-10T16:20:10",
+        "in_scope": true
+      },
+      {
+        "url": "https://packaged.example.com",
+        "normalized": "https://packaged.example.com/",
+        "hostname": "packaged.example.com",
+        "path": "/",
+        "extension": "",
+        "params": [],
+        "sources": [
+          "otx"
+        ],
+        "timestamp": "2026-11-10T16:20:08",
+        "in_scope": true
+      },
+      {
+        "url": "https://api.example.com/api/auth/login",
+        "normalized": "https://api.example.com/api/auth/login",
+        "hostname": "api.example.com",
+        "path": "/api/auth/login",
+        "extension": "",
+        "params": [],
+        "sources": [
+          "otx"
+        ],
+        "timestamp": "2026-11-10T16:20:08",
+        "in_scope": true
+      },
+      {
+        "url": "https://updated.example.com/api/me",
+        "normalized": "https://updated.example.com/api/me",
+        "hostname": "updated.example.com",
+        "path": "/api/me",
+        "extension": "",
+        "params": [],
+        "sources": [
+          "otx"
+        ],
+        "timestamp": "2026-11-10T16:20:08",
+        "in_scope": true
+      },
+      {
+        "url": "https://updated.example.com/base",
+        "normalized": "https://updated.example.com/base",
+        "hostname": "updated.example.com",
+        "path": "/base",
+        "extension": "",
+        "params": [],
+        "sources": [
+          "otx"
+        ],
+        "timestamp": "2026-11-10T16:20:08",
+        "in_scope": true
+      },
+      {
+        "url": "https://api.example.com/v1/api/x",
+        "normalized": "https://api.example.com/v1/api/x",
+        "hostname": "api.example.com",
+        "path": "/v1/api/x",
+        "extension": "",
+        "params": [],
+        "sources": [
+          "otx"
+        ],
+        "timestamp": "2026-11-10T16:20:08",
+        "in_scope": true
+      },
+      {
+        "url": "https://api.example.com/a/../b",
+        "normalized": "https://api.example.com/b",
+        "hostname": "api.example.com",
+        "path": "/b",
+        "extension": "",
+        "params": [],
+        "sources": [
+          "otx"
+        ],
+        "timestamp": "2026-11-10T16:20:08",
+        "in_scope": true
+      },
+      {
+        "url": "https://updated.example.com/base/",
+        "normalized": "https://updated.example.com/base/",
+        "hostname": "updated.example.com",
+        "path": "/base/",
+        "extension": "",
+        "params": [],
+        "sources": [
+          "otx"
+        ],
+        "timestamp": "2026-11-10T16:20:08",
+        "in_scope": true
+      },
+      {
+        "url": "https://www.example.com/articles/how",
+        "normalized": "https://www.example.com/articles/how",
+        "hostname": "www.example.com",
+        "path": "/articles/how",
+        "extension": "",
+        "params": [],
+        "sources": [
+          "otx"
+        ],
+        "timestamp": "2026-11-10T16:19:56",
+        "in_scope": true
+      },
+      {
+        "url": "https://www.example.com/blog/post",
+        "normalized": "https://www.example.com/blog/post",
+        "hostname": "www.example.com",
+        "path": "/blog/post",
+        "extension": "",
+        "params": [],
+        "sources": [
+          "otx"
+        ],
+        "timestamp": "2026-11-10T16:19:56",
+        "in_scope": true
+      }
+    ],
+    "out_of_scope_records": []
+  },
+  "filter": {
+    "total_urls": 2472,
+    "uncategorized": 2197,
+    "stats": {
+      "javascript": 17,
+      "xml": 11,
+      "archives": 62,
+      "json": 39,
+      "text": 12,
+      "pdf": 13,
+      "documents": 2,
+      "jspx": 0,
+      "images": 94,
+      "php": 9,
+      "environment": 0,
+      "logs": 0,
+      "backups": 0,
+      "databases": 2,
+      "yaml": 12,
+      "config": 2
+    },
+    "categories": {
+      "text": 12,
+      "xml": 11,
+      "json": 39,
+      "images": 94,
+      "archives": 62,
+      "pdf": 13,
+      "databases": 2,
+      "php": 9,
+      "yaml": 12,
+      "javascript": 17,
+      "documents": 2,
+      "config": 2,
+      "jspx": 0,
+      "environment": 0,
+      "logs": 0,
+      "backups": 0
+    }
+  },
+  "sensitive": {
+    "total_indicators": 98,
+    "categories": {
+      "administrative": 20,
+      "authentication": 41,
+      "backups": 4,
+      "business_sensitive": 18,
+      "databases": 2,
+      "environment_configuration": 2,
+      "git_exposure": 1,
+      "internal_resources": 10
+    },
+    "suspicious_paths": 96,
+    "sensitive_parameters": 0,
+    "interesting_urls": 96,
+    "indicators": [
+      {
+        "category": "authentication",
+        "kind": "path",
+        "value": "(?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$)",
+        "severity": "medium",
+        "url": "https://api.example.com/api/auth/login"
+      },
+      {
+        "category": "authentication",
+        "kind": "path",
+        "value": "(?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$)",
+        "severity": "medium",
+        "url": "https://google.com.example.com/login"
+      },
+      {
+        "category": "authentication",
+        "kind": "path",
+        "value": "(?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$)",
+        "severity": "medium",
+        "url": "https://example.com/login/1"
+      },
+      {
+        "category": "authentication",
+        "kind": "path",
+        "value": "(?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$)",
+        "severity": "medium",
+        "url": "https://example.com/general/login/"
+      },
+      {
+        "category": "authentication",
+        "kind": "path",
+        "value": "(?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$)",
+        "severity": "medium",
+        "url": "https://example.com/2026/05/28/token"
+      },
+      {
+        "category": "environment_configuration",
+        "kind": "path",
+        "value": "(?:^|/)settings(?:\\.(?:php|json|ya?ml|xml|ini|conf))?$",
+        "severity": "high",
+        "url": "https://example.com/api/settings"
+      },
+      {
+        "category": "business_sensitive",
+        "kind": "path",
+        "value": "(?:^|/)(?:users|customers|customer|confidential|private)(?:/|$)",
+        "severity": "medium",
+        "url": "https://example.com/mobile/v1/users/1"
+      },
+      {
+        "category": "authentication",
+        "kind": "path",
+        "value": "(?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$)",
+        "severity": "medium",
+        "url": "https://example.com/mobile/v1/auth/login"
+      }
+    ]
+  },
+  "javascript": {
+    "count": 17,
+    "analyzed": 0,
+    "endpoints": [],
+    "assets": [
+      {
+        "url": "http://static.example.com/helper.js",
+        "normalized": "http://static.example.com/helper.js",
+        "hostname": "static.example.com",
+        "sources": [],
+        "extension": "js",
+        "params": [],
+        "live_status": null,
+        "content_length": null,
+        "endpoints": [],
+        "analyzed": false,
+        "error": ""
+      },
+      {
+        "url": "https://cdn.example.com/.awswaf.com/a/challenge.js",
+        "normalized": "https://cdn.example.com/.awswaf.com/a/challenge.js",
+        "hostname": "cdn.example.com",
+        "sources": [],
+        "extension": "js",
+        "params": [],
+        "live_status": null,
+        "content_length": null,
+        "endpoints": [],
+        "analyzed": false,
+        "error": ""
+      },
+      {
+        "url": "https://cdn.example.com/challenge.js",
+        "normalized": "https://cdn.example.com/challenge.js",
+        "hostname": "cdn.example.com",
+        "sources": [],
+        "extension": "js",
+        "params": [],
+        "live_status": null,
+        "content_length": null,
+        "endpoints": [],
+        "analyzed": false,
+        "error": ""
+      },
+      {
+        "url": "https://cdn.example.com/checks.js",
+        "normalized": "https://cdn.example.com/checks.js",
+        "hostname": "cdn.example.com",
+        "sources": [],
+        "extension": "js",
+        "params": [],
+        "live_status": null,
+        "content_length": null,
+        "endpoints": [],
+        "analyzed": false,
+        "error": ""
+      },
+      {
+        "url": "https://example.com/b.js",
+        "normalized": "https://example.com/b.js",
+        "hostname": "example.com",
+        "sources": [],
+        "extension": "js",
+        "params": [],
+        "live_status": null,
+        "content_length": null,
+        "endpoints": [],
+        "analyzed": false,
+        "error": ""
+      },
+      {
+        "url": "https://example.com/bad.js",
+        "normalized": "https://example.com/bad.js",
+        "hostname": "example.com",
+        "sources": [],
+        "extension": "js",
+        "params": [],
+        "live_status": null,
+        "content_length": null,
+        "endpoints": [],
+        "analyzed": false,
+        "error": ""
+      },
+      {
+        "url": "https://example.com/bundle.js",
+        "normalized": "https://example.com/bundle.js",
+        "hostname": "example.com",
+        "sources": [],
+        "extension": "js",
+        "params": [],
+        "live_status": null,
+        "content_length": null,
+        "endpoints": [],
+        "analyzed": false,
+        "error": ""
+      },
+      {
+        "url": "https://example.com/camel.js",
+        "normalized": "https://example.com/camel.js",
+        "hostname": "example.com",
+        "sources": [],
+        "extension": "js",
+        "params": [],
+        "live_status": null,
+        "content_length": null,
+        "endpoints": [],
+        "analyzed": false,
+        "error": ""
+      }
+    ],
+    "errors": []
+  },
+  "takeover": {
+    "count": 0,
+    "analyzed_targets": 0,
+    "candidates": [],
+    "errors": []
+  },
+  "risk": {
+    "overall_severity": "medium",
+    "overall_score": 57,
+    "summary": {
+      "critical": 0,
+      "high": 0,
+      "medium": 6,
+      "low": 5,
+      "informational": 1
+    },
+    "asset_summary": {
+      "subdomains": 3,
+      "historical_urls": 2472,
+      "live_hosts": 2,
+      "javascript_assets": 17,
+      "sensitive_indicators": 98,
+      "takeover_candidates": 0
+    },
+    "notes": [
+      "Critical is never auto-assigned. All findings are indicators requiring authorized manual validation."
+    ],
+    "findings": [
+      {
+        "title": "Sensitive-path indicators: environment configuration",
+        "category": "sensitive_path",
+        "severity": "medium",
+        "score": 57,
+        "rationale": "2 URL path/parameter-name indicator(s) matched the 'environment_configuration' patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.",
+        "evidence": [
+          "path: (?:^|/)settings(?:\\.(?:php|json|ya?ml|xml|ini|conf))?$ -> https://example.com/api/settings",
+          "path: (?:^|/)config(?:uration)?(?:\\.(?:php|json|ya?ml|xml|ini|conf))?$ -> https://console.example.com/api/config"
+        ],
+        "recommendation": "Manually review the referenced paths with authorization; do not download secrets, database dumps or configuration files.",
+        "hostname": "",
+        "url": ""
+      },
+      {
+        "title": "Sensitive-path indicators: git exposure",
+        "category": "sensitive_path",
+        "severity": "medium",
+        "score": 56,
+        "rationale": "1 URL path/parameter-name indicator(s) matched the 'git_exposure' patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.",
+        "evidence": [
+          "path: (?:^|/)\\.git(?:/|$) -> http://example.com/.git/"
+        ],
+        "recommendation": "Manually review the referenced paths with authorization; do not download secrets, database dumps or configuration files.",
+        "hostname": "",
+        "url": ""
+      },
+      {
+        "title": "Sensitive-path indicators: databases",
+        "category": "sensitive_path",
+        "severity": "medium",
+        "score": 52,
+        "rationale": "2 URL path/parameter-name indicator(s) matched the 'databases' patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.",
+        "evidence": [
+          "path: \\.(?:sql|sqlite|sqlite3|db)$ -> http://example.com/poc.sql",
+          "path: \\.(?:sql|sqlite|sqlite3|db)$ -> http://example.com/evil.sql"
+        ],
+        "recommendation": "Manually review the referenced paths with authorization; do not download secrets, database dumps or configuration files.",
+        "hostname": "",
+        "url": ""
+      },
+      {
+        "title": "Historical references to configuration files",
+        "category": "historical_file_reference",
+        "severity": "medium",
+        "score": 48,
+        "rationale": "2 historical URL(s) end in a config extension. Historical references do not prove current exposure and the content was not downloaded.",
+        "evidence": [
+          "https://example.com/x.ini",
+          "https://example.com/a.ini"
+        ],
+        "recommendation": "Verify current status manually; avoid downloading sensitive files.",
+        "hostname": "",
+        "url": ""
+      },
+      {
+        "title": "Historical references to database files",
+        "category": "historical_file_reference",
+        "severity": "medium",
+        "score": 48,
+        "rationale": "2 historical URL(s) end in a databases extension. Historical references do not prove current exposure and the content was not downloaded.",
+        "evidence": [
+          "http://example.com/poc.sql",
+          "http://example.com/evil.sql"
+        ],
+        "recommendation": "Verify current status manually; avoid downloading sensitive files.",
+        "hostname": "",
+        "url": ""
+      },
+      {
+        "title": "Historical references to yaml configuration",
+        "category": "historical_file_reference",
+        "severity": "medium",
+        "score": 48,
+        "rationale": "12 historical URL(s) end in a yaml extension. Historical references do not prove current exposure and the content was not downloaded.",
+        "evidence": [
+          "http://example.com/bad.yml",
+          "https://example.com/template.yml",
+          "http://templates.example.com/ci.yml",
+          "https://templates.example.com/ci.yml",
+          "https://example.com/clash.yaml",
+          "https://rules.example.com/steam.yaml",
+          "http://example.com/x.yaml",
+          "http://example.com/root.yaml",
+          "https://api.example.com/contracts/models.yaml",
+          "http://example.com/spec.yaml"
+        ],
+        "recommendation": "Verify current status manually; avoid downloading sensitive files.",
+        "hostname": "",
+        "url": ""
+      },
+      {
+        "title": "Sensitive-path indicators: administrative",
+        "category": "sensitive_path",
+        "severity": "low",
+        "score": 40,
+        "rationale": "20 URL path/parameter-name indicator(s) matched the 'administrative' patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.",
+        "evidence": [
+          "path: (?:^|/)(?:admin|administrator)(?:/|$) -> https://example.com/mobile/v3/admin/users",
+          "path: (?:^|/)(?:admin|administrator)(?:/|$) -> http://example.com/admin/",
+          "path: (?:^|/)(?:admin|administrator)(?:/|$) -> https://example.com/ADMIN",
+          "path: (?:^|/)(?:admin|administrator)(?:/|$) -> https://example.com/admin",
+          "path: (?:^|/)(?:admin|administrator)(?:/|$) -> https://example.com/Admin",
+          "path: (?:^|/)(?:console|dashboard|manage|management)(?:/|$) -> https://example.com/console",
+          "path: (?:^|/)(?:admin|administrator)(?:/|$) -> https://example.com/path/admin/catalog/succ",
+          "path: (?:^|/)(?:console|dashboard|manage|management)(?:/|$) -> https://example.com/manage",
+          "path: (?:^|/)(?:console|dashboard|manage|management)(?:/|$) -> https://example.com/path/dashboard/not",
+          "path: (?:^|/)(?:admin|administrator)(?:/|$) -> https://a.example.com/admin"
+        ],
+        "recommendation": "Manually review the referenced paths with authorization; do not download secrets, database dumps or configuration files.",
+        "hostname": "",
+        "url": ""
+      },
+      {
+        "title": "Sensitive-path indicators: internal resources",
+        "category": "sensitive_path",
+        "severity": "low",
+        "score": 40,
+        "rationale": "10 URL path/parameter-name indicator(s) matched the 'internal_resources' patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.",
+        "evidence": [
+          "path: (?:^|/)(?:staging|stage|dev|development|test|testing|debug)(?:/|$) -> https://example.com/actuator/gateway/routes/test",
+          "path: (?:^|/)(?:staging|stage|dev|development|test|testing|debug)(?:/|$) -> https://example.com/papi/esearch/data/devops/dubboApi/debug/method",
+          "path: (?:^|/)(?:staging|stage|dev|development|test|testing|debug)(?:/|$) -> http://example.com/Test",
+          "path: (?:^|/)(?:staging|stage|dev|development|test|testing|debug)(?:/|$) -> https://example.com/testing",
+          "path: (?:^|/)(?:internal|private|intranet)(?:/|$) -> https://edge.example.com/internal",
+          "path: (?:^|/)(?:internal|private|intranet)(?:/|$) -> https://example.com/hooks/private",
+          "path: (?:^|/)(?:staging|stage|dev|development|test|testing|debug)(?:/|$) -> https://edge.example.com/test",
+          "path: (?:^|/)(?:staging|stage|dev|development|test|testing|debug)(?:/|$) -> https://gateway.example.com/workspace/dev/us/v1/tunnels/",
+          "path: (?:^|/)(?:staging|stage|dev|development|test|testing|debug)(?:/|$) -> https://relay.example.com/api/sessions/test",
+          "path: (?:^|/)(?:staging|stage|dev|development|test|testing|debug)(?:/|$) -> https://keycloak.example.com/realms/test"
+        ],
+        "recommendation": "Manually review the referenced paths with authorization; do not download secrets, database dumps or configuration files.",
+        "hostname": "",
+        "url": ""
+      },
+      {
+        "title": "Sensitive-path indicators: backups",
+        "category": "sensitive_path",
+        "severity": "low",
+        "score": 39,
+        "rationale": "4 URL path/parameter-name indicator(s) matched the 'backups' patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.",
+        "evidence": [
+          "path: (?:^|/)(?:backups?|dump|exports?|restore)(?:/|$) -> https://gitlab-backup.example.com/backup/repo",
+          "path: (?:^|/)(?:backups?|dump|exports?|restore)(?:/|$) -> https://gitlab-backup.example.com/backup/myproject",
+          "path: (?:^|/)(?:backups?|dump|exports?|restore)(?:/|$) -> https://example.com/export",
+          "path: (?:^|/)(?:archive|old)(?:/|$) -> https://example.com/old/foo.git"
+        ],
+        "recommendation": "Manually review the referenced paths with authorization; do not download secrets, database dumps or configuration files.",
+        "hostname": "",
+        "url": ""
+      },
+      {
+        "title": "Sensitive-path indicators: authentication",
+        "category": "sensitive_path",
+        "severity": "low",
+        "score": 35,
+        "rationale": "41 URL path/parameter-name indicator(s) matched the 'authentication' patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.",
+        "evidence": [
+          "path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -> https://api.example.com/api/auth/login",
+          "path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -> https://google.com.example.com/login",
+          "path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -> https://example.com/login/1",
+          "path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -> https://example.com/general/login/",
+          "path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -> https://example.com/2026/05/28/token",
+          "path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -> https://example.com/mobile/v1/auth/login",
+          "path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -> https://example.com/auth/cloud",
+          "path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -> https://example.com/druid/login",
+          "path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -> https://example.com/general/login/auth.php",
+          "path: (?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$) -> https://example.com/auth/admin.directory.user"
+        ],
+        "recommendation": "Manually review the referenced paths with authorization; do not download secrets, database dumps or configuration files.",
+        "hostname": "",
+        "url": ""
+      },
+      {
+        "title": "Sensitive-path indicators: business sensitive",
+        "category": "sensitive_path",
+        "severity": "low",
+        "score": 35,
+        "rationale": "18 URL path/parameter-name indicator(s) matched the 'business_sensitive' patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.",
+        "evidence": [
+          "path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -> https://example.com/mobile/v1/users/1",
+          "path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -> https://example.com/web/v1/users/profile",
+          "path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -> https://example.com/mobile/v3/users",
+          "path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -> https://example.com/mobile/v3/users/profile",
+          "path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -> https://example.com/mobile/v3/admin/users",
+          "path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -> https://example.com/mobile/v2/users/profile",
+          "path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -> https://example.com/mobile/users/profile",
+          "path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -> https://example.com/web/v1/users/1",
+          "path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -> https://example.com/v1.0/users",
+          "path: (?:^|/)(?:users|customers|customer|confidential|private)(?:/|$) -> https://example.com/api/v1/users/FUZZ"
+        ],
+        "recommendation": "Manually review the referenced paths with authorization; do not download secrets, database dumps or configuration files.",
+        "hostname": "",
+        "url": ""
+      },
+      {
+        "title": "JavaScript asset inventory collected",
+        "category": "asset_inventory",
+        "severity": "informational",
+        "score": 10,
+        "rationale": "17 JavaScript asset URL(s) were inventoried. This is attack-surface context, not a vulnerability.",
+        "evidence": [],
+        "recommendation": "Review JavaScript assets for exposed API routes (authorized).",
+        "hostname": "",
+        "url": ""
+      }
+    ]
+  },
+  "sources": [
+    {
+      "source": "crt.sh",
+      "count": 0,
+      "cached": false,
+      "error": "http-404"
+    },
+    {
+      "source": "certspotter",
+      "count": 3,
+      "cached": false,
+      "error": ""
+    },
+    {
+      "source": "otx",
+      "count": 2500,
+      "cached": false,
+      "error": "http-429"
+    },
+    {
+      "source": "wayback",
+      "count": 0,
+      "cached": false,
+      "error": "The read operation timed out"
+    },
+    {
+      "source": "commoncrawl",
+      "count": 0,
+      "cached": false,
+      "error": "CC-MAIN-2026-43:http-504"
+    }
+  ],
+  "tasks": [
+    {
+      "name": "passive",
+      "status": "done",
+      "duration_seconds": 3.057,
+      "summary": "3 hosts",
+      "error": ""
+    },
+    {
+      "name": "dns",
+      "status": "done",
+      "duration_seconds": 0.341,
+      "summary": "2 resolved",
+      "error": ""
+    },
+    {
+      "name": "live",
+      "status": "done",
+      "duration_seconds": 0.409,
+      "summary": "2 live",
+      "error": ""
+    },
+    {
+      "name": "tls",
+      "status": "done",
+      "duration_seconds": 0.23,
+      "summary": "2 connected",
+      "error": ""
+    },
+    {
+      "name": "historical",
+      "status": "done",
+      "duration_seconds": 111.131,
+      "summary": "2472 in-scope URLs",
+      "error": ""
+    },
+    {
+      "name": "filter",
+      "status": "done",
+      "duration_seconds": 0.238,
+      "summary": "275 classified",
+      "error": ""
+    },
+    {
+      "name": "javascript",
+      "status": "done",
+      "duration_seconds": 0.076,
+      "summary": "17 assets",
+      "error": ""
+    },
+    {
+      "name": "sensitive",
+      "status": "done",
+      "duration_seconds": 0.21,
+      "summary": "98 indicators",
+      "error": ""
+    },
+    {
+      "name": "takeover",
+      "status": "done",
+      "duration_seconds": 0.004,
+      "summary": "0 candidates",
+      "error": ""
+    },
+    {
+      "name": "risk",
+      "status": "done",
+      "duration_seconds": 0.002,
+      "summary": "overall medium",
+      "error": ""
+    }
+  ],
+  "errors": [],
+  "organized": {
+    "root": "example.com",
+    "counts": {
+      "raw_subdomains": 5,
+      "unique_subdomains": 3,
+      "in_scope_subdomains": 3,
+      "out_of_scope_subdomains": 0,
+      "live_subdomains": 2,
+      "dead_subdomains": 1,
+      "unknown_subdomains": 0,
+      "malformed_entries": 0,
+      "raw_urls": 4
+    },
+    "hosts": [
+      {
+        "hostname": "example.com",
+        "in_scope": true,
+        "classification": "LIVE",
+        "reason": "HTTP 200 received over HTTPS",
+        "sources": [
+          "root",
+          "crt.sh"
+        ]
+      },
+      {
+        "hostname": "www.example.com",
+        "in_scope": true,
+        "classification": "LIVE",
+        "reason": "HTTP 200 received over HTTPS",
+        "sources": [
+          "crt.sh",
+          "otx"
+        ]
+      },
+      {
+        "hostname": "old-docs.example.com",
+        "in_scope": true,
+        "classification": "DEAD",
+        "reason": "dangling CNAME target returns NXDOMAIN",
+        "sources": [
+          "crt.sh"
+        ]
+      }
+    ]
+  },
+  "intelligence": {
+    "domain": "example.com",
+    "summary": {
+      "total_assets": 3,
+      "interesting_assets": 2,
+      "high_priority_assets": 1,
+      "api_routes": 1,
+      "authentication_paths": 1,
+      "admin_interfaces": 1,
+      "environment_labels": 0,
+      "legacy_indicators": 1,
+      "unusual_status_codes": 0,
+      "dangling_dns_references": 1,
+      "takeover_candidates": 1
+    },
+    "interesting_assets": [
+      {
+        "hostname": "old-docs.example.com",
+        "classification": "DEAD",
+        "priority_score": 65,
+        "priority_level": "high",
+        "tags": [
+          "legacy-indicator",
+          "dangling-dns",
+          "takeover-candidate"
+        ],
+        "http_status": null,
+        "https_status": null,
+        "title": "",
+        "indicators": [
+          {
+            "type": "dangling_dns",
+            "explanation": "Hostname old-docs.example.com has a CNAME pointing to example-docs.github.io which returned NXDOMAIN."
+          }
+        ]
+      },
+      {
+        "hostname": "example.com",
+        "classification": "LIVE",
+        "priority_score": 45,
+        "priority_level": "medium",
+        "tags": [
+          "live",
+          "admin-interface",
+          "authentication-surface"
+        ],
+        "http_status": 200,
+        "https_status": 200,
+        "title": "Example Domain",
+        "indicators": [
+          {
+            "type": "admin_interface",
+            "explanation": "Administrative path indicator (/admin/login) observed in historical URLs."
+          }
+        ]
+      }
+    ]
+  }
+}

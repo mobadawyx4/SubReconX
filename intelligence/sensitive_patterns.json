@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "description": "Indicator patterns for authorized manual review. A match is NEVER proof that sensitive data is exposed; SubReconX only records the indicator and redacts query values.",
+  "categories": {
+    "environment_configuration": {
+      "severity": "high",
+      "description": "Environment or application configuration files",
+      "path_patterns": [
+        "\\.env(?:\\.[a-z0-9_-]+)?$",
+        "(?:^|/)wp-config\\.php$",
+        "(?:^|/)config(?:uration)?(?:\\.(?:php|json|ya?ml|xml|ini|conf))?$",
+        "(?:^|/)settings(?:\\.(?:php|json|ya?ml|xml|ini|conf))?$",
+        "(?:^|/)application\\.(?:ya?ml|properties)$",
+        "(?:^|/)web\\.config$"
+      ],
+      "parameter_patterns": ["config", "settings", "env", "environment"]
+    },
+    "git_exposure": {
+      "severity": "high",
+      "description": "Git repository exposure indicators",
+      "path_patterns": [
+        "(?:^|/)\\.git(?:/|$)",
+        "(?:^|/)\\.git/config$",
+        "(?:^|/)\\.git/HEAD$",
+        "(?:^|/)\\.git/index$"
+      ],
+      "parameter_patterns": []
+    },
+    "backups": {
+      "severity": "medium",
+      "description": "Backup, dump, export and restore artefacts",
+      "path_patterns": [
+        "(?:^|/)(?:backups?|dump|exports?|restore)(?:/|$)",
+        "(?:^|/)(?:database[_-]?backup|db[_-]?backup)(?:/|\\.|$)",
+        "\\.(?:bak|old|backup|orig|save)$",
+        "(?:^|/)(?:archive|old)(?:/|$)"
+      ],
+      "parameter_patterns": ["backup", "dump", "export", "restore"]
+    },
+    "databases": {
+      "severity": "high",
+      "description": "Database dumps or database files",
+      "path_patterns": [
+        "\\.(?:sql|sqlite|sqlite3|db)$",
+        "(?:^|/)(?:database|databases|dump)(?:/|$)"
+      ],
+      "parameter_patterns": ["database", "db", "dump", "sql"]
+    },
+    "administrative": {
+      "severity": "medium",
+      "description": "Administrative or management interfaces",
+      "path_patterns": [
+        "(?:^|/)(?:admin|administrator)(?:/|$)",
+        "(?:^|/)(?:console|dashboard|manage|management)(?:/|$)"
+      ],
+      "parameter_patterns": ["admin", "manage", "dashboard", "console"]
+    },
+    "internal_resources": {
+      "severity": "medium",
+      "description": "Internal, staging, development or debug resources",
+      "path_patterns": [
+        "(?:^|/)(?:internal|private|intranet)(?:/|$)",
+        "(?:^|/)(?:staging|stage|dev|development|test|testing|debug)(?:/|$)"
+      ],
+      "parameter_patterns": ["internal", "private", "debug", "test", "staging", "dev"]
+    },
+    "authentication": {
+      "severity": "medium",
+      "description": "Authentication and credential-related indicators (parameter names only)",
+      "path_patterns": [
+        "(?:^|/)(?:auth|authentication|oauth|oauth2|token|session|login|signin|credentials)(?:/|$)"
+      ],
+      "parameter_patterns": [
+        "auth", "authentication", "oauth", "token", "session", "sessionid",
+        "login", "password", "passwd", "pwd", "api_key", "apikey", "secret",
+        "credential", "credentials"
+      ]
+    },
+    "business_sensitive": {
+      "severity": "medium",
+      "description": "Business-sensitive namespaces",
+      "path_patterns": [
+        "(?:^|/)(?:employee|employees|payroll|finance|financial|hr|human-resources)(?:/|$)",
+        "(?:^|/)(?:users|customers|customer|confidential|private)(?:/|$)"
+      ],
+      "parameter_patterns": [
+        "employee", "payroll", "finance", "hr", "user", "users", "customer",
+        "confidential", "private", "account", "email"
+      ]
+    },
+    "logging": {
+      "severity": "low",
+      "description": "Log file exposure indicators",
+      "path_patterns": [
+        "\\.log$",
+        "(?:^|/)(?:debug|error|access)\\.log$"
+      ],
+      "parameter_patterns": ["log", "debug"]
+    },
+    "debug": {
+      "severity": "medium",
+      "description": "Debug, diagnostics, profiler or status endpoints",
+      "path_patterns": [
+        "(?:^|/)(?:debug|_debug|_debugbar|_profiler|trace|pprof|actuator|phpinfo|server-status|server-info|metrics)(?:/|\\.(?:php|json|txt|html)|$)"
+      ],
+      "parameter_patterns": ["debug", "trace", "profile", "profiler", "test"]
+    },
+    "api": {
+      "severity": "informational",
+      "description": "API routes, GraphQL, Swagger/OpenAPI and versioned endpoints",
+      "path_patterns": [
+        "(?:^|/)(?:api|apis|rest|graphql|graphiql|swagger|openapi|v1|v2|v3|v4|rpc|webhooks?)(?:/|\\.(?:json|ya?ml|php|jsp|ashx|asmx)|$)",
+        "(?:^|/)[a-z0-9_-]+[_-]api(?:/|$)"
+      ],
+      "parameter_patterns": ["graphql", "query", "operationname", "callback", "jsonp"]
+    },
+    "interesting_parameters": {
+      "severity": "low",
+      "description": "Bug bounty parameters of interest (redirect, file/path, ID, SSRF/URL)",
+      "path_patterns": [],
+      "parameter_patterns": [
+        "url", "uri", "redirect", "redirect_uri", "redirect_url", "return",
+        "return_to", "returnurl", "next", "dest", "destination", "continue",
+        "target", "out", "view", "file", "path", "filepath", "document",
+        "folder", "dir", "template", "include", "require", "load",
+        "id", "user_id", "userid", "account_id", "accountid", "org_id",
+        "role", "is_admin", "cmd", "exec", "command", "host", "domain",
+        "callback", "jsonp", "webhook"
+      ]
+    }
+  },
+  "sensitive_parameter_names": [
+    "password", "passwd", "pwd", "secret", "token", "access_token",
+    "refresh_token", "api_key", "apikey", "access_key", "private_key",
+    "client_secret", "authorization", "auth", "session", "sessionid", "sid",
+    "jwt", "credential", "credentials", "bearer", "otp", "totp", "signature",
+    "sig", "hash", "key", "email", "user", "username", "account", "code"
+  ],
+  "notes": "Values of sensitive parameters are redacted in every output. The tool never downloads the referenced files."
+}

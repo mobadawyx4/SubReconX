@@ -1,0 +1,131 @@
+SubReconX v1.0.0 - Reconnaissance report
+========================================================================
+Domain          : example.com
+Generated       : 2026-11-10 19:33:01
+Duration        : 1m 55s
+Overall risk    : MEDIUM (57/100)
+
+ASSET SUMMARY
+------------------------------------------------------------------------
+  Subdomains                   3
+  Historical Urls              2472
+  Live Hosts                   2
+  Javascript Assets            17
+  Sensitive Indicators         98
+  Takeover Candidates          0
+  Raw Subdomains               5
+  Unique Subdomains            3
+  In Scope Subdomains          3
+  Live Subdomains              2
+  Dead Subdomains              1
+  Unknown Subdomains           0
+
+PRIORITIZED BUG BOUNTY ASSETS
+------------------------------------------------------------------------
+  [HIGH         ]  65  old-docs.example.com (DEAD) [legacy-indicator, dangling-dns, takeover-candidate]
+      - dangling_dns: Hostname old-docs.example.com has a CNAME pointing to example-docs.github.io which returned NXDOMAIN.
+  [MEDIUM       ]  45  example.com (LIVE) [live, admin-interface, authentication-surface]
+      - admin_interface: Administrative path indicator (/admin/login) observed in historical URLs.
+
+RISK FINDINGS
+------------------------------------------------------------------------
+  [MEDIUM       ]  57  Sensitive-path indicators: environment configuration
+      2 URL path/parameter-name indicator(s) matched the 'environment_configuration' patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.
+  [MEDIUM       ]  56  Sensitive-path indicators: git exposure
+      1 URL path/parameter-name indicator(s) matched the 'git_exposure' patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.
+  [MEDIUM       ]  52  Sensitive-path indicators: databases
+      2 URL path/parameter-name indicator(s) matched the 'databases' patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.
+  [MEDIUM       ]  48  Historical references to configuration files
+      2 historical URL(s) end in a config extension. Historical references do not prove current exposure and the content was not downloaded.
+  [MEDIUM       ]  48  Historical references to database files
+      2 historical URL(s) end in a databases extension. Historical references do not prove current exposure and the content was not downloaded.
+  [MEDIUM       ]  48  Historical references to yaml configuration
+      12 historical URL(s) end in a yaml extension. Historical references do not prove current exposure and the content was not downloaded.
+  [LOW          ]  40  Sensitive-path indicators: administrative
+      20 URL path/parameter-name indicator(s) matched the 'administrative' patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.
+  [LOW          ]  40  Sensitive-path indicators: internal resources
+      10 URL path/parameter-name indicator(s) matched the 'internal_resources' patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.
+  [LOW          ]  39  Sensitive-path indicators: backups
+      4 URL path/parameter-name indicator(s) matched the 'backups' patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.
+  [LOW          ]  35  Sensitive-path indicators: authentication
+      41 URL path/parameter-name indicator(s) matched the 'authentication' patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.
+  [LOW          ]  35  Sensitive-path indicators: business sensitive
+      18 URL path/parameter-name indicator(s) matched the 'business_sensitive' patterns. Matches are not evidence of exposed data; no referenced file was downloaded and query values were redacted.
+  [INFORMATIONAL]  10  JavaScript asset inventory collected
+      17 JavaScript asset URL(s) were inventoried. This is attack-surface context, not a vulnerability.
+
+LIVE HOSTS
+------------------------------------------------------------------------
+  HTTP  200  example.com Example Domain
+  HTTPS 200  example.com Example Domain
+  HTTP  200  www.example.com Example Domain
+  HTTPS 200  www.example.com Example Domain
+
+TLS CERTIFICATES
+------------------------------------------------------------------------
+  example.com                      VERIFIED   TLSv1.3  CN=example.com notAfter=Dec 25 22:56:35 2026 GMT
+  www.example.com                  VERIFIED   TLSv1.3  CN=example.com notAfter=Dec 25 22:56:35 2026 GMT
+
+HISTORICAL URLS
+------------------------------------------------------------------------
+  total=2472 in_scope=2472 out_of_scope=0
+    otx                  2472
+  file categories:
+    archives             62
+    backups              0
+    config               2
+    databases            2
+    documents            2
+    environment          0
+    images               94
+    javascript           17
+    json                 39
+    jspx                 0
+    logs                 0
+    pdf                  13
+    php                  9
+    text                 12
+    xml                  11
+    yaml                 12
+
+JAVASCRIPT INVENTORY
+------------------------------------------------------------------------
+  assets=8 endpoints=0
+    http://static.example.com/helper.js
+    https://cdn.example.com/.awswaf.com/a/challenge.js
+    https://cdn.example.com/challenge.js
+    https://cdn.example.com/checks.js
+    https://example.com/b.js
+    https://example.com/bad.js
+    https://example.com/bundle.js
+    https://example.com/camel.js
+
+SENSITIVE INDICATORS
+------------------------------------------------------------------------
+  total=98 suspicious_paths=96 sensitive_parameters=0
+    administrative               20
+    authentication               41
+    backups                      4
+    business_sensitive           18
+    databases                    2
+    environment_configuration    2
+    git_exposure                 1
+    internal_resources           10
+
+TAKEOVER CANDIDATES
+------------------------------------------------------------------------
+  None.
+
+SOURCES
+------------------------------------------------------------------------
+  crt.sh               records=0 cached=no http-404
+  certspotter          records=3 cached=no
+  otx                  records=2500 cached=no http-429
+  wayback              records=0 cached=no The read operation timed out
+  commoncrawl          records=0 cached=no CC-MAIN-2026-43:http-504
+
+ERRORS (0)
+------------------------------------------------------------------------
+  None.
+
+Indicators only. Authorized manual verification required. No exploitation or resource claiming performed.

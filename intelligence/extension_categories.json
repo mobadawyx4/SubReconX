@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "description": "File-extension categories used by the URL filtering engine. Extensions are matched against the final path segment only, case-insensitively, and query strings are ignored.",
+  "categories": {
+    "javascript": {
+      "description": "JavaScript application assets",
+      "extensions": ["js", "mjs", "cjs"],
+      "output": "js_files.txt"
+    },
+    "xml": {
+      "description": "XML documents",
+      "extensions": ["xml"],
+      "output": "xml_files.txt"
+    },
+    "archives": {
+      "description": "Compressed archives",
+      "extensions": ["zip", "tar", "gz", "7z", "rar", "tgz"],
+      "output": "archives.txt"
+    },
+    "json": {
+      "description": "JSON data files",
+      "extensions": ["json"],
+      "output": "json_files.txt"
+    },
+    "text": {
+      "description": "Plain text files",
+      "extensions": ["txt"],
+      "output": "txt_files.txt"
+    },
+    "pdf": {
+      "description": "PDF documents",
+      "extensions": ["pdf"],
+      "output": "pdf_files.txt"
+    },
+    "documents": {
+      "description": "Office documents",
+      "extensions": ["doc", "docx", "xls", "xlsx", "ppt", "pptx"],
+      "output": "documents.txt"
+    },
+    "jspx": {
+      "description": "Java Server Pages XML",
+      "extensions": ["jspx"],
+      "output": "jspx.txt"
+    },
+    "images": {
+      "description": "Image assets",
+      "extensions": ["jpg", "jpeg", "png", "svg", "gif", "webp", "bmp", "ico"],
+      "output": "photofiles.txt"
+    },
+    "php": {
+      "description": "PHP scripts",
+      "extensions": ["php", "php3", "php4", "php5", "php7", "phtml"],
+      "output": "php.txt"
+    },
+    "environment": {
+      "description": "Environment files (.env and .env.*)",
+      "extensions": ["env"],
+      "basename_prefixes": [".env"],
+      "output": "env_files.txt"
+    },
+    "logs": {
+      "description": "Log files",
+      "extensions": ["log"],
+      "output": "log_files.txt"
+    },
+    "backups": {
+      "description": "Backup artefacts",
+      "extensions": ["bak", "old", "backup", "orig", "save"],
+      "output": "backup_files.txt"
+    },
+    "databases": {
+      "description": "Database dumps and files",
+      "extensions": ["sql", "db", "sqlite", "sqlite3"],
+      "output": "db_files.txt"
+    },
+    "yaml": {
+      "description": "YAML configuration",
+      "extensions": ["yml", "yaml"],
+      "output": "yaml_files.txt"
+    },
+    "config": {
+      "description": "Generic configuration files",
+      "extensions": ["config", "conf", "ini", "cfg"],
+      "output": "config_files.txt"
+    }
+  }
+}

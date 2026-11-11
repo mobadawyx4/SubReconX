@@ -1,0 +1,54 @@
+# Python bytecode & virtual environments
+__pycache__/
+*.py[cod]
+*.pyo
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Environment variables, credentials, keys & tokens
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*credentials*
+*secret*
+*token*
+api_keys.json
+config.local.json
+
+# Scan results, local databases & caches (never commit personal scan data)
+results/
+output/
+scans/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+.cache/
+
+# Test, coverage & linter caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editor, IDE & OS artifacts
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db

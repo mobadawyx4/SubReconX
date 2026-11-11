@@ -1,0 +1,27 @@
+{
+  "program_name": "Authorized Bugcrowd Program Example",
+  "root_domains": [
+    "example.com"
+  ],
+  "in_scope_hosts": [
+    "example.com",
+    "app.example.com",
+    "portal.example.com"
+  ],
+  "wildcard_domains": [
+    "api.example.com"
+  ],
+  "out_of_scope": [
+    "blog.example.com",
+    "*.corp.example.com",
+    "status.example.com"
+  ],
+  "strict_scope": true,
+  "allow_active_probing": true,
+  "rate_limit_rps": 5.0,
+  "restrictions": [
+    "No automated vulnerability scanning or exploitation",
+    "No credential brute-forcing",
+    "Respect 5 RPS rate limit"
+  ]
+}

@@ -1,0 +1,5 @@
+# No third-party dependencies.
+# SubReconX requires Python 3.10+ and uses only the standard library.
+
+# Minimum interpreter (informational):
+# python>=3.10
