@@ -7,6 +7,7 @@ project intentionally depends only on the Python standard library.
 from __future__ import annotations
 
 import os
+import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -18,10 +19,26 @@ USER_AGENT = (
 )
 
 PROJECT_ROOT = Path(__file__).resolve().parent
-INTELLIGENCE_DIR = PROJECT_ROOT / "intelligence"
-WORDLIST_DIR = PROJECT_ROOT / "wordlists"
-DEFAULT_RESULTS_DIR = PROJECT_ROOT / "results"
-DEFAULT_DB_PATH = PROJECT_ROOT / "subreconx.db"
+
+def _find_data_dir(name: str) -> Path:
+    candidates = (
+        PROJECT_ROOT / name,
+        Path(sys.prefix) / name,
+    )
+    return next((path for path in candidates if path.is_dir()), candidates[0])
+
+INTELLIGENCE_DIR = _find_data_dir("intelligence")
+WORDLIST_DIR = _find_data_dir("wordlists")
+if "site-packages" in PROJECT_ROOT.parts:
+    if os.name == "nt":
+        DATA_HOME = Path(os.environ.get("LOCALAPPDATA", Path.home())) / "SubReconX"
+    else:
+        DATA_HOME = Path(os.environ.get("XDG_DATA_HOME", Path.home() / ".local" / "share")) / "SubReconX"
+else:
+    DATA_HOME = PROJECT_ROOT
+
+DEFAULT_RESULTS_DIR = DATA_HOME / "results"
+DEFAULT_DB_PATH = DATA_HOME / "subreconx.db"
 DEFAULT_WORDLIST = WORDLIST_DIR / "subdomains.txt"
 
 # Network defaults -----------------------------------------------------------
